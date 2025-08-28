@@ -183,7 +183,7 @@ const ExpenseCalculatorSection = ({ id }) => {
                   </select>
                 </div>
                 <div className="form-group">
-                  <label>Amount (₹)</label>
+                  <label>Amount (tk)</label>
                   <div className="amount-input-group">
                     <FontAwesomeIcon icon={faRupeeSign} />
                     <input
@@ -212,7 +212,7 @@ const ExpenseCalculatorSection = ({ id }) => {
                   </div>
                 </div>
                 <div className="form-group">
-                  <label>Description (Optional)</label>
+                  <label>Description (if needed)</label>
                   <input
                     type="text"
                     name="description"
