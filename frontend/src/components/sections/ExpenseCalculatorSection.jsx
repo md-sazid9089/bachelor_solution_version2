@@ -50,12 +50,7 @@ const ExpenseCalculatorSection = ({ id }) => {
   }, [expenses]);
 
   const formatCurrency = (amount) => {
-    return new Intl.NumberFormat('en-IN', {
-      style: 'currency',
-      currency: 'INR',
-      minimumFractionDigits: 0,
-      maximumFractionDigits: 0
-    }).format(amount);
+    return `৳${amount}`;
   };
 
   const getCategoryInfo = (categoryId) => {
@@ -182,10 +177,10 @@ const ExpenseCalculatorSection = ({ id }) => {
                     ))}
                   </select>
                 </div>
-                <div className="form-group">
-                  <label>Amount (₹)</label>
+                             <div className="form-group">
+                  <label>Amount (tk)</label>
                   <div className="amount-input-group">
-                    <FontAwesomeIcon icon={faRupeeSign} />
+                    <span style={{ fontWeight: 'bold', fontSize: '1.1em' }}>৳</span>
                     <input
                       type="number"
                       name="amount"
