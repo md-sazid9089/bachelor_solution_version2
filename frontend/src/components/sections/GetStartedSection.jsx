@@ -229,7 +229,7 @@ const GetStartedSection = ({ id, onRegister }) => {
 
             <button
               type="submit"
-              className={submit-btn ${isSubmitting ? 'submitting' : ''}}
+              className={`submit-btn ${isSubmitting ? 'submitting' : ''}`}
               disabled={isSubmitting}
             >
               {isSubmitting ? (

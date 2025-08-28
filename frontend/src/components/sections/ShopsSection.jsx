@@ -130,7 +130,7 @@ const ShopsSection = ({ id }) => {
           {categories.map((category) => (
             <button
               key={category.id}
-              className={category-btn ${selectedCategory === category.id ? 'active' : ''}}
+              className={`category-btn ${selectedCategory === category.id ? 'active' : ''}`}
               onClick={() => setSelectedCategory(category.id)}
             >
               <FontAwesomeIcon icon={category.icon} />

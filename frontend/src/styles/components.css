@@ -1,13 +1,13 @@
-/* Main App Layout ready*/
+/* Main App Layout */
 .App {
   min-height: 100vh;
 }
 
 .main-content {
-  padding-top: 80px; 
+  padding-top: 80px; /* Account for fixed header */
 }
 
-/* Container add korlam*/
+/* Container */
 .container {
   max-width: 1200px;
   margin: 0 auto;
@@ -156,7 +156,7 @@
   padding: var(--space-2);
 }
 
-/* Sections add korlam*/
+/* Sections */
 .section {
   padding: var(--space-20) 0;
   min-height: 100vh;

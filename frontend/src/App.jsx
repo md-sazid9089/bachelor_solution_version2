@@ -1,15 +1,15 @@
 import React, { useState, useEffect } from 'react';
-import Header from '../../../project/src/components/Header';
-import HousingSection from '../../../project/src/components/sections/HousingSection';
-import ShopsSection from '../../../project/src/components/sections/ShopsSection';
-import MaidSection from '../../../project/src/components/sections/MaidSection';
-import MapSection from '../../../project/src/components/sections/MapSection';
-import ExpenseCalculatorSection from '../../../project/src/components/sections/ExpenseCalculatorSection';
-import ContactSection from '../../../project/src/components/sections/ContactSection';
-import GetStartedSection from '../../../project/src/components/sections/GetStartedSection';
-import ProfileSection from '../../../project/src/components/sections/ProfileSection';
-import LoginModal from '../../../project/src/components/modals/LoginModal';
-import Footer from '../../../project/src/components/Footer';
+import Header from './components/Header';
+import HousingSection from './components/sections/HousingSection';
+import ShopsSection from './components/sections/ShopsSection';
+import MaidSection from './components/sections/MaidSection';
+import MapSection from './components/sections/MapSection';
+import ExpenseCalculatorSection from './components/sections/ExpenseCalculatorSection';
+import ContactSection from './components/sections/ContactSection';
+import GetStartedSection from './components/sections/GetStartedSection';
+import ProfileSection from './components/sections/ProfileSection';
+import LoginModal from './components/modals/LoginModal';
+import Footer from './components/Footer';
 import './styles/components.css';
 import './styles/utilities.css';
 

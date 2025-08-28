@@ -183,20 +183,19 @@ const ExpenseCalculatorSection = ({ id }) => {
                   </select>
                 </div>
                 <div className="form-group">
-                  <label>Amount (tk)</label>
+                  <label>Amount (₹)</label>
                   <div className="amount-input-group">
-  {/* Replace FontAwesome Rupee with Taka symbol */}
-  <span style={{ fontWeight: 'bold', fontSize: '1.1em' }}>৳</span>
-  <input
-    type="number"
-    name="amount"
-    value={newExpense.amount}
-    onChange={handleInputChange}
-    placeholder="0"
-    min="0"
-    step="0.01"
-  />
-</div>
+                    <FontAwesomeIcon icon={faRupeeSign} />
+                    <input
+                      type="number"
+                      name="amount"
+                      value={newExpense.amount}
+                      onChange={handleInputChange}
+                      placeholder="0"
+                      min="0"
+                      step="0.01"
+                    />
+                  </div>
                 </div>
               </div>
               <div className="form-row">
@@ -213,7 +212,7 @@ const ExpenseCalculatorSection = ({ id }) => {
                   </div>
                 </div>
                 <div className="form-group">
-                  <label>Description (if needed)</label>
+                  <label>Description (Optional)</label>
                   <input
                     type="text"
                     name="description"
