@@ -185,17 +185,18 @@ const ExpenseCalculatorSection = ({ id }) => {
                 <div className="form-group">
                   <label>Amount (tk)</label>
                   <div className="amount-input-group">
-                    <FontAwesomeIcon icon={faRupeeSign} />
-                    <input
-                      type="number"
-                      name="amount"
-                      value={newExpense.amount}
-                      onChange={handleInputChange}
-                      placeholder="0"
-                      min="0"
-                      step="0.01"
-                    />
-                  </div>
+  {/* Replace FontAwesome Rupee with Taka symbol */}
+  <span style={{ fontWeight: 'bold', fontSize: '1.1em' }}>৳</span>
+  <input
+    type="number"
+    name="amount"
+    value={newExpense.amount}
+    onChange={handleInputChange}
+    placeholder="0"
+    min="0"
+    step="0.01"
+  />
+</div>
                 </div>
               </div>
               <div className="form-row">
