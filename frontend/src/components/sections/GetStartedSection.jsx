@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 import { motion } from 'framer-motion';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser, faEnvelope, faPhone, faLock, faCheck } from '@fortawesome/free-solid-svg-icons';
@@ -70,30 +71,32 @@ const GetStartedSection = ({ id, onRegister }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
     if (!validateForm()) {
       return;
     }
-
     setIsSubmitting(true);
-
-    // Simulate API call
-    setTimeout(() => {
-      const userData = {
+    try {
+      const res = await axios.post('http://localhost:3001/api/auth/register', {
         name: formData.name,
         email: formData.email,
-        phone: formData.phone
-      };
-
+        phone: formData.phone,
+        password: formData.password
+      });
       setShowSuccess(true);
       setIsSubmitting(false);
-
       // Call parent's onRegister function
       setTimeout(() => {
-        onRegister(userData);
+        onRegister({ name: formData.name, email: formData.email, phone: formData.phone });
         setShowSuccess(false);
       }, 2000);
-    }, 1500);
+    } catch (err) {
+      setIsSubmitting(false);
+      if (err.response && err.response.data && err.response.data.message) {
+        setErrors({ general: err.response.data.message });
+      } else {
+        setErrors({ general: 'Registration failed. Please try again.' });
+      }
+    }
   };
 
   if (showSuccess) {
@@ -227,6 +230,7 @@ const GetStartedSection = ({ id, onRegister }) => {
               {errors.agreeToTerms && <span className="error-message">{errors.agreeToTerms}</span>}
             </div>
 
+            {errors.general && <span className="error-message">{errors.general}</span>}
             <button
               type="submit"
               className={`submit-btn ${isSubmitting ? 'submitting' : ''}`}
