@@ -124,7 +124,7 @@ const MaidSection = ({ id }) => {
 
   useEffect(() => {
     // Fetch maid data from backend
-    axios.get('http://localhost:3001/api/maids')
+    axios.get('http://localhost:5000/api/maids')
       .then(res => {
         setMaids(res.data);
         setFilteredMaids(res.data);

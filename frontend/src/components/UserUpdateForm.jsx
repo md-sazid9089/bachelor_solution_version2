@@ -17,7 +17,7 @@ const UserUpdateForm = ({ userId, currentUser }) => {
   const handleSubmit = async e => {
     e.preventDefault();
     try {
-      const res = await axios.put('http://localhost:3001/api/auth/update', {
+      const res = await axios.put('http://localhost:5000/api/auth/update', {
         userId,
         ...formData
       });

@@ -36,7 +36,7 @@ const maids = [
 async function seedMaids() {
   for (const maid of maids) {
     try {
-      const res = await axios.post('http://localhost:3001/api/maids', maid);
+  const res = await axios.post('http://localhost:5000/api/maids', maid);
       console.log('Added:', res.data.name);
     } catch (err) {
       console.error('Error adding maid:', maid.name, err.response?.data || err.message);
