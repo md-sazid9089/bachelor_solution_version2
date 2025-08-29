@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import { motion } from 'framer-motion';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUserTie, faPhone, faStar, faRupeeSign, faClock, faFilter } from '@fortawesome/free-solid-svg-icons';
@@ -121,60 +122,39 @@ const MaidSection = ({ id }) => {
     }).join(', ');
   };
 
+  useEffect(() => {
+    // Fetch maid data from backend
+    axios.get('http://localhost:3001/api/maids')
+      .then(res => {
+        setMaids(res.data);
+        setFilteredMaids(res.data);
+      })
+      .catch(() => {
+        setMaids([]);
+        setFilteredMaids([]);
+      });
+  }, []);
+
   return (
     <section id={id} className="section maid-section">
       <div className="container">
-        <motion.div
-          initial={{ opacity: 0, y: 50 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          className="section-header"
-        >
-          <h2>Domestic Help Services</h2>
-          <p>Reliable and professional domestic help for your daily needs</p>
-        </motion.div>
-
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          className="service-filters"
-        >
-          <div className="filter-group">
-            <FontAwesomeIcon icon={faFilter} />
-            <select
-              value={selectedService}
-              onChange={(e) => setSelectedService(e.target.value)}
-            >
-              {serviceTypes.map((service) => (
-                <option key={service.id} value={service.id}>
-                  {service.label}
-                </option>
-              ))}
-            </select>
-          </div>
-        </motion.div>
-
+        {/* ...existing header and filter code... */}
         <div className="maids-grid">
           {filteredMaids.map((maid, index) => (
             <motion.div
-              key={maid.id}
+              key={maid._id || maid.id}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: index * 0.1 }}
               className="maid-card"
             >
-              <div className="maid-image">
-                <img src={maid.image} alt={maid.name} />
-                <div className="maid-rating">
-                  {renderStars(maid.rating)}
-                  <span>{maid.rating}</span>
-                </div>
+              <div className="maid-rating" style={{marginBottom: '1rem'}}>
+                {renderStars(maid.rating)}
+                <span>{maid.rating}</span>
               </div>
               <div className="maid-info">
                 <h3>{maid.name}</h3>
                 <p className="maid-description">{maid.description}</p>
-                
                 <div className="maid-details">
                   <div className="detail-row">
                     <FontAwesomeIcon icon={faUserTie} />
@@ -193,17 +173,16 @@ const MaidSection = ({ id }) => {
                     <span>{maid.contact}</span>
                   </div>
                 </div>
-
                 <div className="availability">
                   <strong>Available:</strong> {maid.availability}
                 </div>
-
-                <button className="book-maid-btn">Book Service</button>
+                <div className="book-maid-btn" style={{textAlign: 'center', fontWeight: 'bold'}}>
+                  Contact: {maid.contact}
+                </div>
               </div>
             </motion.div>
           ))}
         </div>
-
         {filteredMaids.length === 0 && (
           <motion.div
             initial={{ opacity: 0 }}

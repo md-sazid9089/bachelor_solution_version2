@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimes, faEnvelope, faLock, faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
@@ -45,24 +46,25 @@ const LoginModal = ({ onClose, onLogin }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     if (!validateForm()) {
       return;
     }
-
     setIsSubmitting(true);
-
-    // Simulate API call
-    setTimeout(() => {
-      const userData = {
-        name: 'John Doe', // In real app, this would come from API
+    try {
+      const res = await axios.post('http://localhost:3001/api/auth/login', {
         email: formData.email,
-        phone: '+91 98765 43210'
-      };
-
-      onLogin(userData);
+        password: formData.password
+      });
+      onLogin(res.data.user);
       setIsSubmitting(false);
-    }, 1500);
+    } catch (err) {
+      setIsSubmitting(false);
+      if (err.response && err.response.data && err.response.data.message) {
+        setErrors(prev => ({ ...prev, general: err.response.data.message }));
+      } else {
+        setErrors(prev => ({ ...prev, general: 'Login failed. Please try again.' }));
+      }
+    }
   };
 
   return (
@@ -136,6 +138,7 @@ const LoginModal = ({ onClose, onLogin }) => {
               <a href="#" className="forgot-password">Forgot Password?</a>
             </div>
 
+            {errors.general && <span className="error-message">{errors.general}</span>}
             <button
               type="submit"
               className={`login-btn ${isSubmitting ? 'submitting' : ''}`}
