@@ -11,8 +11,10 @@ app.use(cors());
 
 const authRoutes = require('./routes/auth');
 const maidRoutes = require('./routes/maid');
+const propertyRoutes = require('./routes/property');
 app.use('/api/auth', authRoutes);
 app.use('/api/maids', maidRoutes);
+app.use('/api/properties', propertyRoutes);
 
 const PORT = process.env.PORT || 5003;
 

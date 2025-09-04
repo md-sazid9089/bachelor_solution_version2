@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import { motion } from 'framer-motion';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMapMarkerAlt, faPhone, faBed, faBath, faRupeeSign, faFilter } from '@fortawesome/free-solid-svg-icons';
@@ -14,77 +15,16 @@ const HousingSection = ({ id }) => {
   const [selectedProperty, setSelectedProperty] = useState(null);
 
   useEffect(() => {
-    // Mock data for properties
-    const mockProperties = [
-      {
-        id: 1,
-        title: "Cozy Studio Apartment",
-        rent: 12000,
-        location: "Dhanmondi",
-        type: "Studio",
-        beds: 1,
-        baths: 1,
-        contact: "+880 1711 123456",
-        description: "Perfect for students and working professionals in Dhaka. Fully furnished with modern amenities."
-      },
-      {
-        id: 2,
-        title: "Spacious 2BHK",
-        rent: 18000,
-        location: "Uttara",
-        type: "2BHK",
-        beds: 2,
-        baths: 2,
-        contact: "+880 1911 654321",
-        description: "Ideal for sharing with roommates. Close to shopping malls and transport."
-      },
-      {
-        id: 3,
-        title: "Budget-Friendly Mess",
-        rent: 8000,
-        location: "Mirpur",
-        type: "Mess",
-        beds: 1,
-        baths: 1,
-        contact: "+880 1811 987654",
-        description: "Affordable accommodation with meals included. Great for students."
-      },
-      {
-        id: 4,
-        title: "Luxury 1BHK",
-        rent: 15000,
-        location: "Banani",
-        type: "1BHK",
-        beds: 1,
-        baths: 1,
-        contact: "+880 1611 112233",
-        description: "Modern apartment with premium furnishing and amenities."
-      },
-      {
-        id: 5,
-        title: "Shared Accommodation",
-        rent: 10000,
-        location: "Mohakhali",
-        type: "Shared",
-        beds: 1,
-        baths: 1,
-        contact: "+880 1511 445566",
-        description: "Great for professionals working in Mohakhali. Fully equipped kitchen."
-      },
-      {
-        id: 6,
-        title: "Comfortable 3BHK",
-        rent: 25000,
-        location: "Gulshan",
-        type: "3BHK",
-        beds: 3,
-        baths: 2,
-        contact: "+880 1711 778899",
-        description: "Perfect for families or groups. Spacious rooms with balcony views."
+    async function fetchProperties() {
+      try {
+        const res = await axios.get('http://localhost:5000/api/properties');
+        setProperties(res.data);
+        setFilteredProperties(res.data);
+      } catch (err) {
+        console.error('Error fetching properties:', err);
       }
-    ];
-    setProperties(mockProperties);
-    setFilteredProperties(mockProperties);
+    }
+    fetchProperties();
   }, []);
 
   useEffect(() => {
