@@ -21,47 +21,43 @@ const ShopsSection = ({ id }) => {
     const mockShops = [
       {
         id: 1,
-        name: "Fresh Mart Grocery",
+        name: "Dhaka Grocery Center",
         category: "grocery",
         distance: "0.2 km",
         rating: 4.5,
-        contact: "+91 98765 43210",
-        address: "123 Main Street, Koramangala",
-        hours: "6:00 AM - 11:00 PM",
-        image: "https://images.pexels.com/photos/264636/pexels-photo-264636.jpeg"
+        contact: "+880 1711 123456",
+        address: "12 Mirpur Road, Dhanmondi",
+        hours: "7:00 AM - 11:00 PM"
       },
       {
         id: 2,
-        name: "MedPlus Pharmacy",
+        name: "Arogya Pharmacy",
         category: "pharmacy",
         distance: "0.5 km",
         rating: 4.3,
-        contact: "+91 87654 32109",
-        address: "456 Health Street, HSR Layout",
-        hours: "24/7",
-        image: "https://images.pexels.com/photos/305568/pexels-photo-305568.jpeg"
+        contact: "+880 1911 654321",
+        address: "45 Health Avenue, Uttara",
+        hours: "24/7"
       },
       {
         id: 3,
-        name: "Spice Garden Restaurant",
+        name: "Bengal Spice Restaurant",
         category: "restaurant",
         distance: "0.3 km",
         rating: 4.7,
-        contact: "+91 76543 21098",
-        address: "789 Food Court, Indiranagar",
-        hours: "11:00 AM - 11:00 PM",
-        image: "https://images.pexels.com/photos/262978/pexels-photo-262978.jpeg"
+        contact: "+880 1811 987654",
+        address: "78 Food Street, Banani",
+        hours: "11:00 AM - 11:00 PM"
       },
       {
         id: 4,
-        name: "StyleZone Fashion",
+        name: "Fashion House BD",
         category: "clothing",
         distance: "0.8 km",
         rating: 4.2,
-        contact: "+91 65432 10987",
-        address: "321 Fashion Street, Marathahalli",
-        hours: "10:00 AM - 9:00 PM",
-        image: "https://images.pexels.com/photos/135620/pexels-photo-135620.jpeg"
+        contact: "+880 1611 112233",
+        address: "32 Style Road, Gulshan",
+        hours: "10:00 AM - 9:00 PM"
       },
       {
         id: 5,
@@ -69,21 +65,19 @@ const ShopsSection = ({ id }) => {
         category: "grocery",
         distance: "1.0 km",
         rating: 4.1,
-        contact: "+91 54321 09876",
-        address: "654 Market Road, Electronic City",
-        hours: "7:00 AM - 10:00 PM",
-        image: "https://images.pexels.com/photos/264636/pexels-photo-264636.jpeg"
+        contact: "+880 1511 445566",
+        address: "65 Market Lane, Mohakhali",
+        hours: "7:00 AM - 10:00 PM"
       },
       {
         id: 6,
-        name: "Cafe Delight",
+        name: "Cafe Dhaka",
         category: "restaurant",
         distance: "0.4 km",
         rating: 4.6,
-        contact: "+91 43210 98765",
-        address: "987 Coffee Lane, Whitefield",
-        hours: "8:00 AM - 10:00 PM",
-        image: "https://images.pexels.com/photos/302896/pexels-photo-302896.jpeg"
+        contact: "+880 1711 778899",
+        address: "98 Coffee Lane, Dhanmondi",
+        hours: "8:00 AM - 10:00 PM"
       }
     ];
     setShops(mockShops);
