@@ -63,15 +63,15 @@ const Footer = () => {
               <div className="footer-contact-info">
                 <div className="contact-item">
                   <FontAwesomeIcon icon={faMapMarkerAlt} />
-                  <span>Koramangala, Bangalore, Karnataka 560034</span>
+                  <span>Dhanmondi, Dhaka, Bangladesh 1209</span>
                 </div>
                 <div className="contact-item">
                   <FontAwesomeIcon icon={faPhone} />
-                  <span>+91 98765 43210</span>
+                  <span>+880 1711 123456</span>
                 </div>
                 <div className="contact-item">
                   <FontAwesomeIcon icon={faEnvelope} />
-                  <span>support@bachelorsolution.com</span>
+                  <span>support@bachelorsolution.com.bd</span>
                 </div>
               </div>
             </div>
@@ -153,7 +153,7 @@ const Footer = () => {
             <div className="copyright">
               <p>
                 © {currentYear} Bachelor Solution. All rights reserved. 
-                Made with <FontAwesomeIcon icon={faHeart} className="heart-icon" /> for students and bachelors.
+                Made for students and bachelors.
               </p>
             </div>
             <div className="footer-bottom-links">
