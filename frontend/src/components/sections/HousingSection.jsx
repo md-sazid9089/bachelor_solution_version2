@@ -206,7 +206,6 @@ const HousingSection = ({ id }) => {
                 </div>
                 <div className="property-footer">
                   <div className="rent">
-                    <FontAwesomeIcon icon={faRupeeSign} />
                     <span>৳{property.rent.toLocaleString()}/month</span>
                   </div>
                   <div className="contact">
@@ -229,7 +228,6 @@ const HousingSection = ({ id }) => {
                 <p>{selectedProperty.description}</p>
                 <div className="modal-details">
                   <div className="detail-item">
-                    <FontAwesomeIcon icon={faRupeeSign} />
                     <span>৳{selectedProperty.rent.toLocaleString()}/month</span>
                   </div>
                   <div className="detail-item">
