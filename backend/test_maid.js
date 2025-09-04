@@ -2,34 +2,34 @@ const axios = require('axios');
 
 const maids = [
   {
-    name: "Priya Sharma",
+    name: "Shabnam Akter",
     services: ["cleaning", "laundry"],
     hourlyRate: 150,
     rating: 4.8,
-    contact: "+91 98765 43210",
+    contact: "+880 1711 123456",
     experience: "5 years",
-    availability: "Mon-Sat, 9 AM - 6 PM",
-    description: "Experienced in maintaining clean and organized homes. Punctual and trustworthy."
+    availability: "Sat-Thu, 9 AM - 6 PM",
+    description: "Experienced in maintaining clean and organized homes in Dhaka. Punctual and trustworthy."
   },
   {
-    name: "Lakshmi Devi",
+    name: "Rokeya Begum",
     services: ["cooking", "cleaning"],
     hourlyRate: 200,
     rating: 4.9,
-    contact: "+91 87654 32109",
+    contact: "+880 1911 654321",
     experience: "8 years",
     availability: "Daily, 7 AM - 2 PM",
-    description: "Expert cook specializing in South Indian cuisine. Also provides cleaning services."
+    description: "Expert cook specializing in Bangladeshi cuisine. Also provides cleaning services."
   },
   {
-    name: "Sunita Kumari",
+    name: "Munni Khatun",
     services: ["babysitting", "cleaning"],
     hourlyRate: 180,
     rating: 4.6,
-    contact: "+91 76543 21098",
+    contact: "+880 1811 987654",
     experience: "3 years",
     availability: "Flexible timings",
-    description: "Caring and responsible babysitter with experience in child care and light housekeeping."
+    description: "Caring and responsible babysitter with experience in child care and light housekeeping in Bangladesh."
   }
 ];
 
