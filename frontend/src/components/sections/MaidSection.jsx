@@ -95,8 +95,7 @@ const MaidSection = ({ id }) => {
                     <span>Services: {getServiceLabels(maid.services)}</span>
                   </div>
                   <div className="detail-row">
-                    <FontAwesomeIcon icon={faRupeeSign} />
-                    <span>₹{maid.hourlyRate}/hour</span>
+                    <span>{maid.hourlyRate}/hour</span>
                   </div>
                   <div className="detail-row">
                     <FontAwesomeIcon icon={faClock} />

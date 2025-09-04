@@ -155,7 +155,7 @@ const ProfileSection = ({ id, user }) => {
                     <div className="property-info">
                       <h4>{property.title}</h4>
                       <p>{property.location}</p>
-                      <span className="rent">₹{property.rent.toLocaleString()}/month</span>
+                      <span className="rent">৳{property.rent.toLocaleString()}/month</span>
                     </div>
                     <button
                       className="remove-btn"
