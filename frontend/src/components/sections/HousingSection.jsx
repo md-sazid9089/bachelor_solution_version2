@@ -20,72 +20,66 @@ const HousingSection = ({ id }) => {
         id: 1,
         title: "Cozy Studio Apartment",
         rent: 12000,
-        location: "Koramangala",
+        location: "Dhanmondi",
         type: "Studio",
         beds: 1,
         baths: 1,
-        contact: "+91 98765 43210",
-        images: ["https://images.pexels.com/photos/1571460/pexels-photo-1571460.jpeg"],
-        description: "Perfect for students and working professionals. Fully furnished with modern amenities."
+        contact: "+880 1711 123456",
+        description: "Perfect for students and working professionals in Dhaka. Fully furnished with modern amenities."
       },
       {
         id: 2,
         title: "Spacious 2BHK",
         rent: 18000,
-        location: "HSR Layout",
+        location: "Uttara",
         type: "2BHK",
         beds: 2,
         baths: 2,
-        contact: "+91 87654 32109",
-        images: ["https://images.pexels.com/photos/1571457/pexels-photo-1571457.jpeg"],
-        description: "Ideal for sharing with roommates. Close to IT parks and metro station."
+        contact: "+880 1911 654321",
+        description: "Ideal for sharing with roommates. Close to shopping malls and transport."
       },
       {
         id: 3,
-        title: "Budget-Friendly PG",
+        title: "Budget-Friendly Mess",
         rent: 8000,
-        location: "Marathahalli",
-        type: "PG",
+        location: "Mirpur",
+        type: "Mess",
         beds: 1,
         baths: 1,
-        contact: "+91 76543 21098",
-        images: ["https://images.pexels.com/photos/1571458/pexels-photo-1571458.jpeg"],
+        contact: "+880 1811 987654",
         description: "Affordable accommodation with meals included. Great for students."
       },
       {
         id: 4,
         title: "Luxury 1BHK",
         rent: 15000,
-        location: "Indiranagar",
+        location: "Banani",
         type: "1BHK",
         beds: 1,
         baths: 1,
-        contact: "+91 65432 10987",
-        images: ["https://images.pexels.com/photos/1571459/pexels-photo-1571459.jpeg"],
+        contact: "+880 1611 112233",
         description: "Modern apartment with premium furnishing and amenities."
       },
       {
         id: 5,
         title: "Shared Accommodation",
         rent: 10000,
-        location: "Electronic City",
+        location: "Mohakhali",
         type: "Shared",
         beds: 1,
         baths: 1,
-        contact: "+91 54321 09876",
-        images: ["https://images.pexels.com/photos/1571461/pexels-photo-1571461.jpeg"],
-        description: "Great for professionals working in Electronic City. Fully equipped kitchen."
+        contact: "+880 1511 445566",
+        description: "Great for professionals working in Mohakhali. Fully equipped kitchen."
       },
       {
         id: 6,
         title: "Comfortable 3BHK",
         rent: 25000,
-        location: "Whitefield",
+        location: "Gulshan",
         type: "3BHK",
         beds: 3,
         baths: 2,
-        contact: "+91 43210 98765",
-        images: ["https://images.pexels.com/photos/1571462/pexels-photo-1571462.jpeg"],
+        contact: "+880 1711 778899",
         description: "Perfect for families or groups. Spacious rooms with balcony views."
       }
     ];
@@ -153,10 +147,10 @@ const HousingSection = ({ id }) => {
               onChange={(e) => handleFilterChange('priceRange', e.target.value)}
             >
               <option value="all">All Price Ranges</option>
-              <option value="0-10000">Under ₹10,000</option>
-              <option value="10000-15000">₹10,000 - ₹15,000</option>
-              <option value="15000-20000">₹15,000 - ₹20,000</option>
-              <option value="20000">Above ₹20,000</option>
+              <option value="0-10000">Under ৳10,000</option>
+              <option value="10000-15000">৳10,000 - ৳15,000</option>
+              <option value="15000-20000">৳15,000 - ৳20,000</option>
+              <option value="20000">Above ৳20,000</option>
             </select>
 
             <select
@@ -164,12 +158,12 @@ const HousingSection = ({ id }) => {
               onChange={(e) => handleFilterChange('location', e.target.value)}
             >
               <option value="all">All Locations</option>
-              <option value="koramangala">Koramangala</option>
-              <option value="hsr">HSR Layout</option>
-              <option value="marathahalli">Marathahalli</option>
-              <option value="indiranagar">Indiranagar</option>
-              <option value="electronic city">Electronic City</option>
-              <option value="whitefield">Whitefield</option>
+              <option value="dhanmondi">Dhanmondi</option>
+              <option value="uttara">Uttara</option>
+              <option value="mirpur">Mirpur</option>
+              <option value="banani">Banani</option>
+              <option value="mohakhali">Mohakhali</option>
+              <option value="gulshan">Gulshan</option>
             </select>
 
             <select
@@ -213,7 +207,7 @@ const HousingSection = ({ id }) => {
                 <div className="property-footer">
                   <div className="rent">
                     <FontAwesomeIcon icon={faRupeeSign} />
-                    <span>{property.rent.toLocaleString()}/month</span>
+                    <span>৳{property.rent.toLocaleString()}/month</span>
                   </div>
                   <div className="contact">
                     <FontAwesomeIcon icon={faPhone} />
@@ -236,7 +230,7 @@ const HousingSection = ({ id }) => {
                 <div className="modal-details">
                   <div className="detail-item">
                     <FontAwesomeIcon icon={faRupeeSign} />
-                    <span>₹{selectedProperty.rent.toLocaleString()}/month</span>
+                    <span>৳{selectedProperty.rent.toLocaleString()}/month</span>
                   </div>
                   <div className="detail-item">
                     <FontAwesomeIcon icon={faMapMarkerAlt} />
