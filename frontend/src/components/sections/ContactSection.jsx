@@ -168,7 +168,6 @@ const ContactSection = ({ id }) => {
           >
             <div className="chatbot-header">
               <div className="chatbot-title">
-                <FontAwesomeIcon icon={faRobot} />
                 <span>Bachelor Solution Assistant</span>
               </div>
               <button 

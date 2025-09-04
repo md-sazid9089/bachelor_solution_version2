@@ -36,7 +36,7 @@ const properties = [
 async function seedProperties() {
   for (const property of properties) {
     try {
-      const res = await axios.post('http://localhost:5000      const res = await axios.get('http://localhost:5000/api/properties');/api/properties', property);
+      const res = await axios.post('http://localhost:5000/api/properties', property);
       console.log('Added:', res.data.title);
     } catch (err) {
       console.error('Error adding property:', property.title, err.response?.data || err.message);
