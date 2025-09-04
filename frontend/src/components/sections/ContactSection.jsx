@@ -29,29 +29,29 @@ const ContactSection = ({ id }) => {
     {
       icon: faPhone,
       title: 'Phone Support',
-      primary: '+91 98765 43210',
-      secondary: '+91 87654 32109',
-      description: 'Call us for immediate assistance'
+      primary: '+880 1711 123456',
+      secondary: '+880 1911 654321',
+      description: 'Call us for immediate assistance in Bangladesh'
     },
     {
       icon: faEnvelope,
       title: 'Email Support',
-      primary: 'support@bachelorsolution.com',
-      secondary: 'info@bachelorsolution.com',
+      primary: 'support@bachelorsolution.com.bd',
+      secondary: 'info@bachelorsolution.com.bd',
       description: 'Send us your queries anytime'
     },
     {
       icon: faClock,
       title: 'Business Hours',
-      primary: 'Mon - Fri: 9:00 AM - 8:00 PM',
-      secondary: 'Sat - Sun: 10:00 AM - 6:00 PM',
+      primary: 'Sat - Thu: 9:00 AM - 8:00 PM',
+      secondary: 'Friday: 10:00 AM - 6:00 PM',
       description: 'We respond within 2-4 hours'
     },
     {
       icon: faMapMarkerAlt,
       title: 'Office Location',
-      primary: 'Koramangala, Bangalore',
-      secondary: 'Karnataka, India - 560034',
+      primary: 'Dhanmondi, Dhaka',
+      secondary: 'Dhaka, Bangladesh - 1209',
       description: 'Visit us for in-person support'
     }
   ];
@@ -104,7 +104,7 @@ const ContactSection = ({ id }) => {
     } else if (lowerMessage.includes('shop') || lowerMessage.includes('store')) {
       return "Our platform lists nearby essential shops including groceries, pharmacies, and restaurants. Use the location filter to find services near your area.";
     } else {
-      return "Thanks for your message! For detailed assistance, please contact our support team at +91 98765 43210 or support@bachelorsolution.com. We're here to help!";
+  return "Thanks for your message! For detailed assistance, please contact our support team at +880 1711 123456 or support@bachelorsolution.com.bd. We're here to help!";
     }
   };
 
@@ -191,7 +191,7 @@ const ContactSection = ({ id }) => {
                   <div className="message-content">
                     <div className="message-text">{message.text}</div>
                     <div className="message-time">
-                      {message.timestamp.toLocaleTimeString('en-IN', { 
+                      {message.timestamp.toLocaleTimeString('en-BD', { 
                         hour: '2-digit', 
                         minute: '2-digit' 
                       })}
