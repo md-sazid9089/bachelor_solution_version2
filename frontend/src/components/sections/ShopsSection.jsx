@@ -148,10 +148,7 @@ const ShopsSection = ({ id }) => {
               transition={{ duration: 0.6, delay: index * 0.1 }}
               className="shop-card"
             >
-              <div className="shop-image">
-                <img src={shop.image} alt={shop.name} />
-                <div className="shop-category">{shop.category}</div>
-              </div>
+              <div className="shop-category">{shop.category}</div>
               <div className="shop-info">
                 <h3>{shop.name}</h3>
                 <div className="shop-rating">

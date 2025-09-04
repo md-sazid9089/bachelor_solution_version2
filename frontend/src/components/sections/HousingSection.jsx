@@ -197,10 +197,7 @@ const HousingSection = ({ id }) => {
               className="property-card"
               onClick={() => setSelectedProperty(property)}
             >
-              <div className="property-image">
-                <img src={property.images[0]} alt={property.title} />
-                <div className="property-type">{property.type}</div>
-              </div>
+              <div className="property-type">{property.type}</div>
               <div className="property-info">
                 <h3>{property.title}</h3>
                 <div className="property-details">
@@ -232,9 +229,7 @@ const HousingSection = ({ id }) => {
           <div className="property-modal" onClick={() => setSelectedProperty(null)}>
             <div className="modal-content" onClick={(e) => e.stopPropagation()}>
               <button className="close-modal" onClick={() => setSelectedProperty(null)}>×</button>
-              <div className="modal-image">
-                <img src={selectedProperty.images[0]} alt={selectedProperty.title} />
-              </div>
+              {/* Image removed */}
               <div className="modal-info">
                 <h3>{selectedProperty.title}</h3>
                 <p>{selectedProperty.description}</p>
