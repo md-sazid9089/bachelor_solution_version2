@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import { motion } from 'framer-motion';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStore, faMapMarkerAlt, faPhone, faStar, faShoppingCart, faPrescriptionBottle, faUtensils, faTshirt } from '@fortawesome/free-solid-svg-icons';
@@ -17,71 +18,16 @@ const ShopsSection = ({ id }) => {
   ];
 
   useEffect(() => {
-    // Mock data for shops
-    const mockShops = [
-      {
-        id: 1,
-        name: "Dhaka Grocery Center",
-        category: "grocery",
-        distance: "0.2 km",
-        rating: 4.5,
-        contact: "+880 1711 123456",
-        address: "12 Mirpur Road, Dhanmondi",
-        hours: "7:00 AM - 11:00 PM"
-      },
-      {
-        id: 2,
-        name: "Arogya Pharmacy",
-        category: "pharmacy",
-        distance: "0.5 km",
-        rating: 4.3,
-        contact: "+880 1911 654321",
-        address: "45 Health Avenue, Uttara",
-        hours: "24/7"
-      },
-      {
-        id: 3,
-        name: "Bengal Spice Restaurant",
-        category: "restaurant",
-        distance: "0.3 km",
-        rating: 4.7,
-        contact: "+880 1811 987654",
-        address: "78 Food Street, Banani",
-        hours: "11:00 AM - 11:00 PM"
-      },
-      {
-        id: 4,
-        name: "Fashion House BD",
-        category: "clothing",
-        distance: "0.8 km",
-        rating: 4.2,
-        contact: "+880 1611 112233",
-        address: "32 Style Road, Gulshan",
-        hours: "10:00 AM - 9:00 PM"
-      },
-      {
-        id: 5,
-        name: "Daily Needs Store",
-        category: "grocery",
-        distance: "1.0 km",
-        rating: 4.1,
-        contact: "+880 1511 445566",
-        address: "65 Market Lane, Mohakhali",
-        hours: "7:00 AM - 10:00 PM"
-      },
-      {
-        id: 6,
-        name: "Cafe Dhaka",
-        category: "restaurant",
-        distance: "0.4 km",
-        rating: 4.6,
-        contact: "+880 1711 778899",
-        address: "98 Coffee Lane, Dhanmondi",
-        hours: "8:00 AM - 10:00 PM"
+    async function fetchShops() {
+      try {
+        const res = await axios.get('http://localhost:5000/api/shops');
+        setShops(res.data);
+        setFilteredShops(res.data);
+      } catch (err) {
+        console.error('Error fetching shops:', err);
       }
-    ];
-    setShops(mockShops);
-    setFilteredShops(mockShops);
+    }
+    fetchShops();
   }, []);
 
   useEffect(() => {

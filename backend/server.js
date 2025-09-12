@@ -12,11 +12,13 @@ app.use(cors());
 const authRoutes = require('./routes/auth');
 const maidRoutes = require('./routes/maid');
 const propertyRoutes = require('./routes/property');
+const shopRoutes = require('./routes/shop');
 app.use('/api/auth', authRoutes);
 app.use('/api/maids', maidRoutes);
 app.use('/api/properties', propertyRoutes);
+app.use('/api/shops', shopRoutes);
 
-const PORT = process.env.PORT || 5003;
+const PORT = process.env.PORT || 5000;
 
 mongoose.connect(process.env.MONGODB_URI)
   .then(() => {
