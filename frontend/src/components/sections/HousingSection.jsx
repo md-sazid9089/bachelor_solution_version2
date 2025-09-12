@@ -70,7 +70,7 @@ const HousingSection = ({ id }) => {
           transition={{ duration: 0.8 }}
           className="section-header"
         >
-          <h2>Find Your Perfect Home</h2>
+          <h2> YOUR JOURNEY TO THE RIGHT HOME STARTS HERE </h2>
           <p>Discover comfortable and affordable housing options for students and professionals</p>
         </motion.div>
 
