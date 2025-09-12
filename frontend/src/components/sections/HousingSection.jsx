@@ -71,7 +71,7 @@ const HousingSection = ({ id }) => {
           className="section-header"
         >
           <h2> YOUR JOURNEY TO THE RIGHT HOME STARTS HERE </h2>
-          <p>Discover comfortable and affordable housing options for students and professionals</p>
+          <p>Affordable, Comfortable Housing for Students and Professionals</p>
         </motion.div>
 
         <motion.div
