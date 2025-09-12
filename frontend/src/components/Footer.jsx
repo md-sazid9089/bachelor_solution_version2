@@ -67,7 +67,7 @@ const Footer = () => {
                 </div>
                 <div className="contact-item">
                   <FontAwesomeIcon icon={faPhone} />
-                  <span>+880 1711 123456</span>
+                  <span>+880 1711 123455</span>
                 </div>
                 <div className="contact-item">
                   <FontAwesomeIcon icon={faEnvelope} />
