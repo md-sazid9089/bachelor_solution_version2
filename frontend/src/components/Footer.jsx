@@ -63,11 +63,11 @@ const Footer = () => {
               <div className="footer-contact-info">
                 <div className="contact-item">
                   <FontAwesomeIcon icon={faMapMarkerAlt} />
-                  <span>Dhanmondi, Dhaka, Bangladesh 1209</span>
+                  <span>Uttara, Dhaka, Bangladesh 1216</span>
                 </div>
                 <div className="contact-item">
                   <FontAwesomeIcon icon={faPhone} />
-                  <span>+880 1711 123456</span>
+                  <span>+880 1604294563</span>
                 </div>
                 <div className="contact-item">
                   <FontAwesomeIcon icon={faEnvelope} />
