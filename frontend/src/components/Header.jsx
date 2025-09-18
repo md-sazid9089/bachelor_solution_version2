@@ -18,6 +18,7 @@ const Header = ({
     { id: 'maid', label: 'Maid', icon: faUserTie },
     { id: 'map', label: 'Map', icon: faMap },
     { id: 'expense-calculator', label: 'Calculator', icon: faCalculator },
+    { id: 'hacks', label: 'Hacks', icon: faUserTie },
     { id: 'contact', label: 'Contact', icon: faPhone },
   ];
 

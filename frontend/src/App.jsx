@@ -6,6 +6,7 @@ import MaidSection from './components/sections/MaidSection';
 import MapSection from './components/sections/MapSection';
 import ExpenseCalculatorSection from './components/sections/ExpenseCalculatorSection';
 import ContactSection from './components/sections/ContactSection';
+import BachelorHacksSection from './components/sections/BachelorHacksSection';
 import GetStartedSection from './components/sections/GetStartedSection';
 import ProfileSection from './components/sections/ProfileSection';
 import LoginModal from './components/modals/LoginModal';
@@ -70,6 +71,7 @@ function App() {
         <MaidSection id="maid" />
         <MapSection id="map" />
         <ExpenseCalculatorSection id="expense-calculator" />
+        <BachelorHacksSection id="hacks" user={user} />
         <ContactSection id="contact" />
         {isLoggedIn && <ProfileSection id="profile" user={user} />}
         {!isLoggedIn && <GetStartedSection id="get-started" onRegister={handleRegister} />}

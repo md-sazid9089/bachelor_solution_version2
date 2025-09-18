@@ -51,7 +51,8 @@ const LoginModal = ({ onClose, onLogin }) => {
     }
     setIsSubmitting(true);
     try {
-      const res = await axios.post('http://localhost:3001/api/auth/login', {
+      // Using backend running on port 5000 (ensure server.js uses this PORT)
+      const res = await axios.post('http://localhost:5000/api/auth/login', {
         email: formData.email,
         password: formData.password
       });
