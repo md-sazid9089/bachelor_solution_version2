@@ -220,17 +220,17 @@ const AdminDashboard = ({ adminUser, adminToken, onLogout }) => {
       case 'users':
         return { name: '', email: '', password: '' };
       case 'properties':
-        return { name: '', location: '', rent: '', contact: '', description: '' };
+        return { title: '', location: '', rent: '', type: '', beds: '', baths: '', contact: '', description: '' };
       case 'shops':
-        return { name: '', category: '', location: '', description: '', image: '', contact: '' };
+        return { name: '', category: '', address: '', contact: '', distance: '', rating: '', hours: '' };
       case 'maids':
-        return { name: '', experience: '', location: '', hourlyRate: '', contact: '', description: '' };
+        return { name: '', services: [], hourlyRate: '', rating: '', contact: '', experience: '', availability: '', description: '' };
       case 'hacks':
         return { title: '', content: '', category: '', authorName: '' };
       case 'doctors':
-        return { name: '', specialty: '', experience: '', location: '', contact: '', doctorId: '' };
+        return { uniqueId: '', name: '', specialty: '', rating: '', experience: '', education: '', location: '', availability: '' };
       case 'appointments':
-        return { patientName: '', doctorName: '', doctorId: '', specialty: '', appointmentDate: '', appointmentType: '', status: 'pending' };
+        return { patientName: '', patientEmail: '', patientPhone: '', doctorName: '', specialty: '', appointmentType: 'in-person', appointmentDate: '', appointmentTime: '', status: 'pending', symptoms: '', notes: '' };
       default:
         return {};
     }
@@ -363,11 +363,11 @@ const AdminDashboard = ({ adminUser, adminToken, onLogout }) => {
           return (
             <>
               <div className="form-group">
-                <label>Property Name</label>
+                <label>Property Title</label>
                 <input
                   type="text"
-                  value={formData.name || ''}
-                  onChange={(e) => handleInputChange('name', e.target.value)}
+                  value={formData.title || ''}
+                  onChange={(e) => handleInputChange('title', e.target.value)}
                   required
                 />
               </div>
@@ -381,12 +381,46 @@ const AdminDashboard = ({ adminUser, adminToken, onLogout }) => {
                 />
               </div>
               <div className="form-group">
-                <label>Rent</label>
+                <label>Type</label>
+                <select
+                  value={formData.type || ''}
+                  onChange={(e) => handleInputChange('type', e.target.value)}
+                  required
+                >
+                  <option value="">Select Type</option>
+                  <option value="Apartment">Apartment</option>
+                  <option value="Room">Room</option>
+                  <option value="Studio">Studio</option>
+                  <option value="House">House</option>
+                </select>
+              </div>
+              <div className="form-group">
+                <label>Rent (Monthly)</label>
                 <input
-                  type="text"
+                  type="number"
                   value={formData.rent || ''}
                   onChange={(e) => handleInputChange('rent', e.target.value)}
                   required
+                />
+              </div>
+              <div className="form-group">
+                <label>Bedrooms</label>
+                <input
+                  type="number"
+                  value={formData.beds || ''}
+                  onChange={(e) => handleInputChange('beds', e.target.value)}
+                  required
+                  min="1"
+                />
+              </div>
+              <div className="form-group">
+                <label>Bathrooms</label>
+                <input
+                  type="number"
+                  value={formData.baths || ''}
+                  onChange={(e) => handleInputChange('baths', e.target.value)}
+                  required
+                  min="1"
                 />
               </div>
               <div className="form-group">
@@ -438,12 +472,32 @@ const AdminDashboard = ({ adminUser, adminToken, onLogout }) => {
                 </select>
               </div>
               <div className="form-group">
-                <label>Location</label>
+                <label>Address</label>
                 <input
                   type="text"
-                  value={formData.location || ''}
-                  onChange={(e) => handleInputChange('location', e.target.value)}
+                  value={formData.address || ''}
+                  onChange={(e) => handleInputChange('address', e.target.value)}
                   required
+                />
+              </div>
+              <div className="form-group">
+                <label>Distance</label>
+                <input
+                  type="text"
+                  value={formData.distance || ''}
+                  onChange={(e) => handleInputChange('distance', e.target.value)}
+                  placeholder="e.g., 0.5 km"
+                />
+              </div>
+              <div className="form-group">
+                <label>Rating</label>
+                <input
+                  type="number"
+                  value={formData.rating || ''}
+                  onChange={(e) => handleInputChange('rating', e.target.value)}
+                  min="1"
+                  max="5"
+                  step="0.1"
                 />
               </div>
               <div className="form-group">
@@ -452,23 +506,15 @@ const AdminDashboard = ({ adminUser, adminToken, onLogout }) => {
                   type="text"
                   value={formData.contact || ''}
                   onChange={(e) => handleInputChange('contact', e.target.value)}
-                  required
                 />
               </div>
               <div className="form-group">
-                <label>Description</label>
-                <textarea
-                  value={formData.description || ''}
-                  onChange={(e) => handleInputChange('description', e.target.value)}
-                  rows="3"
-                />
-              </div>
-              <div className="form-group">
-                <label>Image URL</label>
+                <label>Hours</label>
                 <input
-                  type="url"
-                  value={formData.image || ''}
-                  onChange={(e) => handleInputChange('image', e.target.value)}
+                  type="text"
+                  value={formData.hours || ''}
+                  onChange={(e) => handleInputChange('hours', e.target.value)}
+                  placeholder="e.g., 9 AM - 10 PM"
                 />
               </div>
             </>
@@ -487,29 +533,43 @@ const AdminDashboard = ({ adminUser, adminToken, onLogout }) => {
                 />
               </div>
               <div className="form-group">
+                <label>Services (comma-separated)</label>
+                <input
+                  type="text"
+                  value={Array.isArray(formData.services) ? formData.services.join(', ') : ''}
+                  onChange={(e) => handleInputChange('services', e.target.value.split(',').map(s => s.trim()))}
+                  placeholder="e.g., Cleaning, Cooking, Laundry"
+                  required
+                />
+              </div>
+              <div className="form-group">
                 <label>Experience</label>
                 <input
                   type="text"
                   value={formData.experience || ''}
                   onChange={(e) => handleInputChange('experience', e.target.value)}
+                  placeholder="e.g., 5 years"
                   required
                 />
               </div>
               <div className="form-group">
-                <label>Location</label>
+                <label>Hourly Rate (৳)</label>
                 <input
-                  type="text"
-                  value={formData.location || ''}
-                  onChange={(e) => handleInputChange('location', e.target.value)}
-                  required
-                />
-              </div>
-              <div className="form-group">
-                <label>Hourly Rate</label>
-                <input
-                  type="text"
+                  type="number"
                   value={formData.hourlyRate || ''}
                   onChange={(e) => handleInputChange('hourlyRate', e.target.value)}
+                  required
+                />
+              </div>
+              <div className="form-group">
+                <label>Rating</label>
+                <input
+                  type="number"
+                  value={formData.rating || ''}
+                  onChange={(e) => handleInputChange('rating', e.target.value)}
+                  min="1"
+                  max="5"
+                  step="0.1"
                   required
                 />
               </div>
@@ -523,11 +583,22 @@ const AdminDashboard = ({ adminUser, adminToken, onLogout }) => {
                 />
               </div>
               <div className="form-group">
+                <label>Availability</label>
+                <input
+                  type="text"
+                  value={formData.availability || ''}
+                  onChange={(e) => handleInputChange('availability', e.target.value)}
+                  placeholder="e.g., Monday to Friday, 9 AM - 5 PM"
+                  required
+                />
+              </div>
+              <div className="form-group">
                 <label>Description</label>
                 <textarea
                   value={formData.description || ''}
                   onChange={(e) => handleInputChange('description', e.target.value)}
                   rows="3"
+                  required
                 />
               </div>
             </>
@@ -586,11 +657,11 @@ const AdminDashboard = ({ adminUser, adminToken, onLogout }) => {
           return (
             <>
               <div className="form-group">
-                <label>Doctor ID</label>
+                <label>Doctor ID (Unique)</label>
                 <input
                   type="text"
-                  value={formData.doctorId || ''}
-                  onChange={(e) => handleInputChange('doctorId', e.target.value)}
+                  value={formData.uniqueId || ''}
+                  onChange={(e) => handleInputChange('uniqueId', e.target.value)}
                   required
                 />
               </div>
@@ -605,11 +676,30 @@ const AdminDashboard = ({ adminUser, adminToken, onLogout }) => {
               </div>
               <div className="form-group">
                 <label>Specialty</label>
-                <input
-                  type="text"
+                <select
                   value={formData.specialty || ''}
                   onChange={(e) => handleInputChange('specialty', e.target.value)}
                   required
+                >
+                  <option value="">Select Specialty</option>
+                  <option value="general">General</option>
+                  <option value="cardiology">Cardiology</option>
+                  <option value="dermatology">Dermatology</option>
+                  <option value="psychiatry">Psychiatry</option>
+                  <option value="orthopedic">Orthopedic</option>
+                  <option value="gynecology">Gynecology</option>
+                  <option value="pediatrics">Pediatrics</option>
+                </select>
+              </div>
+              <div className="form-group">
+                <label>Rating</label>
+                <input
+                  type="number"
+                  value={formData.rating || ''}
+                  onChange={(e) => handleInputChange('rating', e.target.value)}
+                  min="1"
+                  max="5"
+                  step="0.1"
                 />
               </div>
               <div className="form-group">
@@ -618,6 +708,17 @@ const AdminDashboard = ({ adminUser, adminToken, onLogout }) => {
                   type="text"
                   value={formData.experience || ''}
                   onChange={(e) => handleInputChange('experience', e.target.value)}
+                  placeholder="e.g., 10 years"
+                  required
+                />
+              </div>
+              <div className="form-group">
+                <label>Education</label>
+                <input
+                  type="text"
+                  value={formData.education || ''}
+                  onChange={(e) => handleInputChange('education', e.target.value)}
+                  placeholder="e.g., MBBS, MD"
                   required
                 />
               </div>
@@ -631,11 +732,12 @@ const AdminDashboard = ({ adminUser, adminToken, onLogout }) => {
                 />
               </div>
               <div className="form-group">
-                <label>Contact</label>
+                <label>Availability</label>
                 <input
                   type="text"
-                  value={formData.contact || ''}
-                  onChange={(e) => handleInputChange('contact', e.target.value)}
+                  value={formData.availability || ''}
+                  onChange={(e) => handleInputChange('availability', e.target.value)}
+                  placeholder="e.g., Mon-Fri 9 AM - 5 PM"
                   required
                 />
               </div>
@@ -655,6 +757,24 @@ const AdminDashboard = ({ adminUser, adminToken, onLogout }) => {
                 />
               </div>
               <div className="form-group">
+                <label>Patient Email</label>
+                <input
+                  type="email"
+                  value={formData.patientEmail || ''}
+                  onChange={(e) => handleInputChange('patientEmail', e.target.value)}
+                  required
+                />
+              </div>
+              <div className="form-group">
+                <label>Patient Phone</label>
+                <input
+                  type="tel"
+                  value={formData.patientPhone || ''}
+                  onChange={(e) => handleInputChange('patientPhone', e.target.value)}
+                  required
+                />
+              </div>
+              <div className="form-group">
                 <label>Doctor Name</label>
                 <input
                   type="text"
@@ -664,44 +784,49 @@ const AdminDashboard = ({ adminUser, adminToken, onLogout }) => {
                 />
               </div>
               <div className="form-group">
-                <label>Doctor ID</label>
-                <input
-                  type="text"
-                  value={formData.doctorId || ''}
-                  onChange={(e) => handleInputChange('doctorId', e.target.value)}
-                  required
-                />
-              </div>
-              <div className="form-group">
                 <label>Specialty</label>
-                <input
-                  type="text"
+                <select
                   value={formData.specialty || ''}
                   onChange={(e) => handleInputChange('specialty', e.target.value)}
                   required
-                />
+                >
+                  <option value="">Select Specialty</option>
+                  <option value="general">General</option>
+                  <option value="cardiology">Cardiology</option>
+                  <option value="dermatology">Dermatology</option>
+                  <option value="psychiatry">Psychiatry</option>
+                  <option value="orthopedic">Orthopedic</option>
+                  <option value="gynecology">Gynecology</option>
+                  <option value="pediatrics">Pediatrics</option>
+                </select>
               </div>
               <div className="form-group">
                 <label>Appointment Date</label>
                 <input
-                  type="datetime-local"
+                  type="date"
                   value={formData.appointmentDate || ''}
                   onChange={(e) => handleInputChange('appointmentDate', e.target.value)}
                   required
                 />
               </div>
               <div className="form-group">
+                <label>Appointment Time</label>
+                <input
+                  type="time"
+                  value={formData.appointmentTime || ''}
+                  onChange={(e) => handleInputChange('appointmentTime', e.target.value)}
+                  required
+                />
+              </div>
+              <div className="form-group">
                 <label>Appointment Type</label>
                 <select
-                  value={formData.appointmentType || ''}
+                  value={formData.appointmentType || 'in-person'}
                   onChange={(e) => handleInputChange('appointmentType', e.target.value)}
                   required
                 >
-                  <option value="">Select Type</option>
-                  <option value="consultation">Consultation</option>
+                  <option value="in-person">In-Person</option>
                   <option value="telemedicine">Telemedicine</option>
-                  <option value="follow-up">Follow-up</option>
-                  <option value="emergency">Emergency</option>
                 </select>
               </div>
               <div className="form-group">
@@ -715,6 +840,24 @@ const AdminDashboard = ({ adminUser, adminToken, onLogout }) => {
                   <option value="completed">Completed</option>
                   <option value="cancelled">Cancelled</option>
                 </select>
+              </div>
+              <div className="form-group">
+                <label>Symptoms</label>
+                <textarea
+                  value={formData.symptoms || ''}
+                  onChange={(e) => handleInputChange('symptoms', e.target.value)}
+                  rows="2"
+                  placeholder="Patient symptoms"
+                />
+              </div>
+              <div className="form-group">
+                <label>Notes</label>
+                <textarea
+                  value={formData.notes || ''}
+                  onChange={(e) => handleInputChange('notes', e.target.value)}
+                  rows="2"
+                  placeholder="Additional notes"
+                />
               </div>
             </>
           );
@@ -909,8 +1052,10 @@ const AdminDashboard = ({ adminUser, adminToken, onLogout }) => {
           <thead>
             <tr>
               <th>Patient</th>
+              <th>Phone</th>
               <th>Doctor</th>
               <th>Date</th>
+              <th>Time</th>
               <th>Type</th>
               <th>Status</th>
               <th>Actions</th>
@@ -920,8 +1065,10 @@ const AdminDashboard = ({ adminUser, adminToken, onLogout }) => {
             {appointments.map(appointment => (
               <tr key={appointment._id}>
                 <td>{appointment.patientName}</td>
+                <td>{appointment.patientPhone}</td>
                 <td>{appointment.doctorName}</td>
                 <td>{new Date(appointment.appointmentDate).toLocaleDateString()}</td>
+                <td>{appointment.appointmentTime}</td>
                 <td>{appointment.appointmentType}</td>
                 <td>
                   <select 
@@ -979,9 +1126,11 @@ const AdminDashboard = ({ adminUser, adminToken, onLogout }) => {
         <table>
           <thead>
             <tr>
-              <th>Name</th>
+              <th>Title</th>
+              <th>Type</th>
               <th>Location</th>
               <th>Rent</th>
+              <th>Beds/Baths</th>
               <th>Contact</th>
               <th>Actions</th>
             </tr>
@@ -989,9 +1138,11 @@ const AdminDashboard = ({ adminUser, adminToken, onLogout }) => {
           <tbody>
             {properties.map(property => (
               <tr key={property._id}>
-                <td>{property.name}</td>
+                <td>{property.title}</td>
+                <td>{property.type}</td>
                 <td>{property.location}</td>
-                <td>{property.rent}</td>
+                <td>৳{property.rent}</td>
+                <td>{property.beds}/{property.baths}</td>
                 <td>{property.contact}</td>
                 <td>
                   <div className="action-buttons">
@@ -1039,7 +1190,9 @@ const AdminDashboard = ({ adminUser, adminToken, onLogout }) => {
             <tr>
               <th>Name</th>
               <th>Category</th>
-              <th>Location</th>
+              <th>Address</th>
+              <th>Distance</th>
+              <th>Rating</th>
               <th>Contact</th>
               <th>Actions</th>
             </tr>
@@ -1049,7 +1202,9 @@ const AdminDashboard = ({ adminUser, adminToken, onLogout }) => {
               <tr key={shop._id}>
                 <td>{shop.name}</td>
                 <td>{shop.category}</td>
-                <td>{shop.location}</td>
+                <td>{shop.address}</td>
+                <td>{shop.distance}</td>
+                <td>{shop.rating ? `${shop.rating}⭐` : 'N/A'}</td>
                 <td>{shop.contact}</td>
                 <td>
                   <div className="action-buttons">
@@ -1096,9 +1251,10 @@ const AdminDashboard = ({ adminUser, adminToken, onLogout }) => {
           <thead>
             <tr>
               <th>Name</th>
+              <th>Services</th>
               <th>Experience</th>
-              <th>Location</th>
               <th>Rate/Hour</th>
+              <th>Rating</th>
               <th>Contact</th>
               <th>Actions</th>
             </tr>
@@ -1107,9 +1263,10 @@ const AdminDashboard = ({ adminUser, adminToken, onLogout }) => {
             {maids.map(maid => (
               <tr key={maid._id}>
                 <td>{maid.name}</td>
+                <td>{Array.isArray(maid.services) ? maid.services.join(', ') : maid.services}</td>
                 <td>{maid.experience}</td>
-                <td>{maid.location}</td>
-                <td>{maid.hourlyRate}</td>
+                <td>৳{maid.hourlyRate}</td>
+                <td>{maid.rating}⭐</td>
                 <td>{maid.contact}</td>
                 <td>
                   <div className="action-buttons">
@@ -1217,20 +1374,22 @@ const AdminDashboard = ({ adminUser, adminToken, onLogout }) => {
               <th>Name</th>
               <th>Specialty</th>
               <th>Experience</th>
+              <th>Education</th>
               <th>Location</th>
-              <th>Contact</th>
+              <th>Rating</th>
               <th>Actions</th>
             </tr>
           </thead>
           <tbody>
             {doctors.map(doctor => (
               <tr key={doctor._id}>
-                <td>{doctor.doctorId}</td>
+                <td>{doctor.uniqueId}</td>
                 <td>{doctor.name}</td>
                 <td>{doctor.specialty}</td>
                 <td>{doctor.experience}</td>
+                <td>{doctor.education}</td>
                 <td>{doctor.location}</td>
-                <td>{doctor.contact}</td>
+                <td>{doctor.rating}⭐</td>
                 <td>
                   <div className="action-buttons">
                     <button 
