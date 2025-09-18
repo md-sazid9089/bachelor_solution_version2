@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBars, faTimes, faHome, faStore, faUserTie, faMap, faCalculator, faPhone, faUser, faSignOutAlt, faCrown } from '@fortawesome/free-solid-svg-icons';
+import { faBars, faTimes, faHome, faStore, faUserTie, faMap, faCalculator, faPhone, faUser, faSignOutAlt, faHeartbeat } from '@fortawesome/free-solid-svg-icons';
 
 const Header = ({
   activeSection,
@@ -19,12 +19,12 @@ const Header = ({
     { id: 'map', label: 'Map', icon: faMap },
     { id: 'expense-calculator', label: 'Calculator', icon: faCalculator },
     { id: 'hacks', label: 'Hacks', icon: faUserTie },
+    { id: 'health', label: 'Health', icon: faHeartbeat },
     { id: 'contact', label: 'Contact', icon: faPhone },
   ];
 
   if (isLoggedIn) {
     navItems.push({ id: 'profile', label: 'Profile', icon: faUser });
-    navItems.push({ id: 'subscription', label: 'Premium', icon: faCrown });
   }
 
   const handleNavClick = (sectionId) => {

@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMapMarkerAlt, faPhone, faBed, faBath, faRupeeSign, faFilter } from '@fortawesome/free-solid-svg-icons';
 
-const HousingSection = ({ id }) => {
+const HousingSection = ({ id, user }) => {
   const [properties, setProperties] = useState([]);
   const [filteredProperties, setFilteredProperties] = useState([]);
   const [filters, setFilters] = useState({
@@ -148,10 +148,17 @@ const HousingSection = ({ id }) => {
                   <div className="rent">
                     <span>৳{property.rent.toLocaleString()}/month</span>
                   </div>
-                  <div className="contact">
-                    <FontAwesomeIcon icon={faPhone} />
-                    <span>{property.contact}</span>
-                  </div>
+                  {user ? (
+                    <div className="contact">
+                      <FontAwesomeIcon icon={faPhone} />
+                      <span>{property.contact}</span>
+                    </div>
+                  ) : (
+                    <div className="contact-placeholder">
+                      <FontAwesomeIcon icon={faPhone} />
+                      <span>Login to view contact</span>
+                    </div>
+                  )}
                 </div>
               </div>
             </motion.div>
@@ -182,12 +189,25 @@ const HousingSection = ({ id }) => {
                     <FontAwesomeIcon icon={faBath} />
                     <span>{selectedProperty.baths} Bathroom{selectedProperty.baths > 1 ? 's' : ''}</span>
                   </div>
-                  <div className="detail-item">
-                    <FontAwesomeIcon icon={faPhone} />
-                    <span>{selectedProperty.contact}</span>
-                  </div>
+                  {user ? (
+                    <div className="detail-item">
+                      <FontAwesomeIcon icon={faPhone} />
+                      <span>{selectedProperty.contact}</span>
+                    </div>
+                  ) : (
+                    <div className="detail-item login-required">
+                      <FontAwesomeIcon icon={faPhone} />
+                      <span>Login to view landlord contact</span>
+                    </div>
+                  )}
                 </div>
-                <button className="contact-owner-btn">Contact Owner</button>
+                {user ? (
+                  <button className="contact-owner-btn">Contact Owner</button>
+                ) : (
+                  <button className="login-required-btn" disabled>
+                    Login to Contact Owner
+                  </button>
+                )}
               </div>
             </div>
           </div>

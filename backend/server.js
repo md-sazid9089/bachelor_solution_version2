@@ -14,13 +14,15 @@ const maidRoutes = require('./routes/maid');
 const propertyRoutes = require('./routes/property');
 const shopRoutes = require('./routes/shop');
 const hackRoutes = require('./routes/hack');
+const healthRoutes = require('./routes/health');
 app.use('/api/auth', authRoutes);
 app.use('/api/maids', maidRoutes);
 app.use('/api/properties', propertyRoutes);
 app.use('/api/shops', shopRoutes);
 app.use('/api/hacks', hackRoutes);
+app.use('/api/health', healthRoutes);
 
-console.log('[Init] Routes mounted: /api/auth, /api/maids, /api/properties, /api/shops, /api/hacks');
+console.log('[Init] Routes mounted: /api/auth, /api/maids, /api/properties, /api/shops, /api/hacks, /api/health');
 
 const PORT = process.env.PORT || 5000;
 

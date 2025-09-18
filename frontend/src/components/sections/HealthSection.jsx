@@ -65,7 +65,7 @@ const HealthSection = ({ id, user }) => {
 
   const fetchDoctorById = async (uniqueId) => {
     try {
-      const response = await axios.get(http://localhost:5000/api/health/doctors/${uniqueId});
+      const response = await axios.get(`http://localhost:5000/api/health/doctors/${uniqueId}`);
       return response.data;
     } catch (error) {
       console.error('Error fetching doctor by ID:', error);
@@ -97,7 +97,7 @@ const HealthSection = ({ id, user }) => {
     const prefix = 'APT';
     const timestamp = Date.now().toString().slice(-6);
     const random = Math.random().toString(36).substr(2, 4).toUpperCase();
-    return ${prefix}${timestamp}${random};
+    return `${prefix}${timestamp}${random}`;
   };
 
   const handleAppointmentSubmit = async (e) => {
@@ -168,14 +168,14 @@ const HealthSection = ({ id, user }) => {
 
         <div className="health-tabs">
           <button
-            className={tab-btn ${activeTab === 'appointments' ? 'active' : ''}}
+            className={`tab-btn ${activeTab === 'appointments' ? 'active' : ''}`}
             onClick={() => setActiveTab('appointments')}
           >
             <FontAwesomeIcon icon={faCalendarPlus} />
             Appointments
           </button>
           <button
-            className={tab-btn ${activeTab === 'telemedicine' ? 'active' : ''}}
+            className={`tab-btn ${activeTab === 'telemedicine' ? 'active' : ''}`}
             onClick={() => setActiveTab('telemedicine')}
           >
             <FontAwesomeIcon icon={faVideo} />

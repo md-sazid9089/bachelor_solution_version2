@@ -7,9 +7,9 @@ import MapSection from './components/sections/MapSection';
 import ExpenseCalculatorSection from './components/sections/ExpenseCalculatorSection';
 import ContactSection from './components/sections/ContactSection';
 import BachelorHacksSection from './components/sections/BachelorHacksSection';
+import HealthSection from './components/sections/HealthSection';
 import GetStartedSection from './components/sections/GetStartedSection';
 import ProfileSection from './components/sections/ProfileSection';
-import SubscriptionSection from './components/sections/SubscriptionSection';
 import LoginModal from './components/modals/LoginModal';
 import Footer from './components/Footer';
 import './styles/components.css';
@@ -67,15 +67,15 @@ function App() {
       />
       
       <main className="main-content">
-        <HousingSection id="housing" />
+        <HousingSection id="housing" user={user} />
         <ShopsSection id="shops" />
         <MaidSection id="maid" />
         <MapSection id="map" />
         <ExpenseCalculatorSection id="expense-calculator" />
         <BachelorHacksSection id="hacks" user={user} />
+        <HealthSection id="health" user={user} />
         <ContactSection id="contact" />
         {isLoggedIn && <ProfileSection id="profile" user={user} />}
-        {isLoggedIn && <SubscriptionSection id="subscription" user={user} isLoggedIn={isLoggedIn} />}
         {!isLoggedIn && <GetStartedSection id="get-started" onRegister={handleRegister} />}
       </main>
 

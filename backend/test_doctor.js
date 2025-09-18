@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const Doctor = require('./models/Doctor');
+require('dotenv').config();
 
 const doctors = [
   {
@@ -135,7 +136,7 @@ const doctors = [
 ];
 
 // Connect to MongoDB
-mongoose.connect('mongodb+srv://bachelor-solution:12345@cluster0.fqzpb.mongodb.net/bachelor-solution?retryWrites=true&w=majority')
+mongoose.connect(process.env.MONGODB_URI)
   .then(() => console.log('Connected to MongoDB'))
   .catch(err => console.error('MongoDB connection error:', err));
 
@@ -158,11 +159,11 @@ async function seedDoctors() {
     }));
 
     const savedDoctors = await Doctor.insertMany(doctorData);
-    console.log(Added ${savedDoctors.length} doctors successfully);
+    console.log(`Added ${savedDoctors.length} doctors successfully`);
     
     // Display the doctors
     savedDoctors.forEach(doctor => {
-      console.log(- Dr. ${doctor.name} (${doctor.uniqueId}) - ${doctor.specialty});
+      console.log(`- Dr. ${doctor.name} (${doctor.uniqueId}) - ${doctor.specialty}`);
     });
     
   } catch (error) {
