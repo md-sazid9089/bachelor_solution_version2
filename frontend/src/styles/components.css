@@ -471,7 +471,7 @@
 
 /* Shops Section */
 .shops-section {
-  background: linear-gradient(135deg, var(--secondary-50) 0%, var(--accent-50) 100%);
+  background: linear-gradient(135deg, var(--primary-50) 0%, var(--secondary-50) 100%);
 }
 
 .category-filters {
@@ -616,7 +616,7 @@
 
 /* Maid Section */
 .maid-section {
-  background: linear-gradient(135deg, var(--accent-50) 0%, var(--primary-50) 100%);
+  background: linear-gradient(135deg, var(--primary-50) 0%, var(--secondary-50) 100%);
 }
 
 .service-filters {
@@ -704,7 +704,7 @@
 
 /* Map Section */
 .map-section {
-  background: linear-gradient(135deg, var(--gray-50) 0%, var(--primary-50) 100%);
+  background: linear-gradient(135deg, var(--primary-50) 0%, var(--secondary-50) 100%);
 }
 
 .map-controls {
@@ -1050,7 +1050,7 @@
 
 /* Profile Section */
 .profile-section {
-  background: linear-gradient(135deg, var(--gray-50) 0%, var(--primary-50) 100%);
+  background: linear-gradient(135deg, var(--primary-50) 0%, var(--secondary-50) 100%);
 }
 
 .profile-container {
@@ -1248,7 +1248,7 @@
 
 /* Expense Calculator Section */
 .expense-calculator-section {
-  background: linear-gradient(135deg, var(--accent-50) 0%, var(--primary-50) 100%);
+  background: linear-gradient(135deg, var(--primary-50) 0%, var(--secondary-50) 100%);
 }
 
 .expense-calculator-container {
@@ -2207,7 +2207,7 @@
 
 /* Ex-Bachelor Hacks Section */
 .hacks-section {
-  background: linear-gradient(135deg, var(--secondary-50) 0%, var(--primary-50) 100%);
+  background: linear-gradient(135deg, var(--primary-50) 0%, var(--secondary-50) 100%);
 }
 
 .hacks-toolbar {
@@ -2868,7 +2868,7 @@
 /* Health Section Styles */
 .health-section {
   padding: var(--space-20) 0;
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(248, 250, 252, 0.9) 100%);
+  background: linear-gradient(135deg, var(--primary-50) 0%, var(--secondary-50) 100%);
   min-height: 100vh;
 }
 
