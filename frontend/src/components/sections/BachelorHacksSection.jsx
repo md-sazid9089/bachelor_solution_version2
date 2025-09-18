@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { motion } from 'framer-motion';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faHeart, faFire, faLightbulb } from '@fortawesome/free-solid-svg-icons';
+import { faFire, faLightbulb } from '@fortawesome/free-solid-svg-icons';
 
 const categories = [
   { id: 'all', label: 'All' },
@@ -36,33 +36,33 @@ const BachelorHacksSection = ({ id, user }) => {
   useEffect(() => { fetchHacks(); }, []); // initial load
   useEffect(() => { fetchHacks(selectedCategory); }, [selectedCategory]);
 
-  const handleLike = async (hackId) => {
-    if (!user) return; // must be logged in
-    try {
-      const res = await axios.post(`http://localhost:5000/api/hacks/${hackId}/like`, { userIdentifier: user.email });
-      setHacks(prev => prev.map(h => h._id === hackId ? res.data : h));
-    } catch (err) {
-      console.error('Error liking hack');
-    }
-  };
-
   const toggleForm = () => setFormOpen(o => !o);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!user) return;
-    if (!formData.title.trim() || !formData.content.trim()) return;
+    if (!user) {
+      alert('Please login to submit a hack');
+      return;
+    }
+    if (!formData.title.trim() || !formData.content.trim()) {
+      alert('Please fill in both title and content');
+      return;
+    }
     setSubmitting(true);
     try {
+      console.log('Submitting hack:', { ...formData, authorName: user.name || 'Anonymous' });
       const res = await axios.post('http://localhost:5000/api/hacks', {
         ...formData,
         authorName: user.name || 'Anonymous'
       });
+      console.log('Hack saved successfully:', res.data);
       setHacks(prev => [res.data, ...prev]);
       setFormData({ title: '', content: '', category: 'general' });
       setFormOpen(false);
+      alert('Hack submitted successfully!');
     } catch (err) {
-      console.error('Failed to submit hack');
+      console.error('Failed to submit hack:', err);
+      alert('Failed to submit hack. Please try again.');
     } finally {
       setSubmitting(false);
     }
@@ -133,7 +133,6 @@ const BachelorHacksSection = ({ id, user }) => {
         ) : (
           <div className="hacks-list">
             {hacks.map(hack => {
-              const liked = user && hack.likes.includes(user.email);
               return (
                 <motion.div
                   key={hack._id}
@@ -149,9 +148,6 @@ const BachelorHacksSection = ({ id, user }) => {
                   <p className="hack-content">{hack.content}</p>
                   <div className="hack-meta">
                     <span className="author">By {hack.authorName}</span>
-                    <button className={`like-btn ${liked ? 'liked' : ''}`} disabled={!user} onClick={() => handleLike(hack._id)}>
-                      <FontAwesomeIcon icon={faHeart} /> {hack.likes.length}
-                    </button>
                   </div>
                 </motion.div>
               );

@@ -16,12 +16,24 @@ exports.list = async (req, res) => {
 exports.create = async (req, res) => {
   try {
     const { title, content, category, authorName } = req.body;
+    console.log('Received hack submission:', { title, content, category, authorName });
+    
     if (!title || !content || !authorName) {
+      console.log('Missing required fields');
       return res.status(400).json({ message: 'Missing required fields' });
     }
-    const hack = await Hack.create({ title, content, category: category || 'general', authorName });
+    
+    const hack = await Hack.create({ 
+      title, 
+      content, 
+      category: category || 'general', 
+      authorName 
+    });
+    
+    console.log('Hack saved to database:', hack);
     res.status(201).json(hack);
   } catch (err) {
+    console.error('Error creating hack:', err);
     res.status(500).json({ message: 'Server error' });
   }
 };

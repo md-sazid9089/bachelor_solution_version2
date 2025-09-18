@@ -9,6 +9,7 @@ import ContactSection from './components/sections/ContactSection';
 import BachelorHacksSection from './components/sections/BachelorHacksSection';
 import GetStartedSection from './components/sections/GetStartedSection';
 import ProfileSection from './components/sections/ProfileSection';
+import SubscriptionSection from './components/sections/SubscriptionSection';
 import LoginModal from './components/modals/LoginModal';
 import Footer from './components/Footer';
 import './styles/components.css';
@@ -74,6 +75,7 @@ function App() {
         <BachelorHacksSection id="hacks" user={user} />
         <ContactSection id="contact" />
         {isLoggedIn && <ProfileSection id="profile" user={user} />}
+        {isLoggedIn && <SubscriptionSection id="subscription" user={user} isLoggedIn={isLoggedIn} />}
         {!isLoggedIn && <GetStartedSection id="get-started" onRegister={handleRegister} />}
       </main>
 

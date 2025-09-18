@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBars, faTimes, faHome, faStore, faUserTie, faMap, faCalculator, faPhone, faUser, faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
+import { faBars, faTimes, faHome, faStore, faUserTie, faMap, faCalculator, faPhone, faUser, faSignOutAlt, faCrown } from '@fortawesome/free-solid-svg-icons';
 
 const Header = ({
   activeSection,
@@ -24,6 +24,7 @@ const Header = ({
 
   if (isLoggedIn) {
     navItems.push({ id: 'profile', label: 'Profile', icon: faUser });
+    navItems.push({ id: 'subscription', label: 'Premium', icon: faCrown });
   }
 
   const handleNavClick = (sectionId) => {
