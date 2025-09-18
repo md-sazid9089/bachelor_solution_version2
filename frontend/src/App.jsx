@@ -72,7 +72,7 @@ function App() {
         <ExpenseCalculatorSection id="expense-calculator" />
         <ContactSection id="contact" />
         {isLoggedIn && <ProfileSection id="profile" user={user} />}
-        <GetStartedSection id="get-started" onRegister={handleRegister} />
+        {!isLoggedIn && <GetStartedSection id="get-started" onRegister={handleRegister} />}
       </main>
 
       <Footer />
