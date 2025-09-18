@@ -51,11 +51,36 @@ const LoginModal = ({ onClose, onLogin }) => {
     }
     setIsSubmitting(true);
     try {
-      // Using backend running on port 5000 (ensure server.js uses this PORT)
+      // Check if this is admin login
+      const isAdminEmail = formData.email === 'sazid.cse.20230104062@aust.edu';
+      
+      if (isAdminEmail) {
+        // Try admin login first
+        try {
+          const adminRes = await axios.post('http://localhost:5000/api/admin/login', {
+            email: formData.email,
+            password: formData.password
+          });
+          
+          // Store admin token and redirect to admin panel
+          localStorage.setItem('adminToken', adminRes.data.token);
+          localStorage.setItem('adminUser', JSON.stringify(adminRes.data.user));
+          
+          // Redirect to admin panel
+          window.location.href = '/admin';
+          return;
+        } catch (adminError) {
+          // If admin login fails, continue with regular login
+          console.log('Admin login failed, trying regular login');
+        }
+      }
+      
+      // Regular user login
       const res = await axios.post('http://localhost:5000/api/auth/login', {
         email: formData.email,
         password: formData.password
       });
+      
       onLogin(res.data.user);
       setIsSubmitting(false);
     } catch (err) {

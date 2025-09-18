@@ -11,6 +11,7 @@ import HealthSection from './components/sections/HealthSection';
 import GetStartedSection from './components/sections/GetStartedSection';
 import ProfileSection from './components/sections/ProfileSection';
 import LoginModal from './components/modals/LoginModal';
+import AdminPanel from './components/admin/AdminPanel';
 import Footer from './components/Footer';
 import './styles/components.css';
 import './styles/utilities.css';
@@ -20,6 +21,7 @@ function App() {
   const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [user, setUser] = useState(null);
+  const [currentPage, setCurrentPage] = useState('main');
 
   useEffect(() => {
     const storedUser = localStorage.getItem('bachelorSolutionUser');
@@ -27,6 +29,32 @@ function App() {
       setUser(JSON.parse(storedUser));
       setIsLoggedIn(true);
     }
+
+    // Check URL for admin route
+    const path = window.location.pathname;
+    if (path === '/admin') {
+      setCurrentPage('admin');
+    }
+
+    // Handle back/forward navigation
+    const handlePopState = () => {
+      const path = window.location.pathname;
+      if (path === '/admin') {
+        setCurrentPage('admin');
+      } else {
+        setCurrentPage('main');
+      }
+    };
+
+    // Check for admin redirect in URL params
+    const urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.get('admin') === 'true') {
+      setCurrentPage('admin');
+      window.history.replaceState({}, document.title, '/admin');
+    }
+
+    window.addEventListener('popstate', handlePopState);
+    return () => window.removeEventListener('popstate', handlePopState);
   }, []);
 
   const handleLogin = (userData) => {
@@ -57,35 +85,41 @@ function App() {
 
   return (
     <div className="App">
-      <Header
-        activeSection={activeSection}
-        onNavigate={scrollToSection}
-        onLoginClick={() => setIsLoginModalOpen(true)}
-        isLoggedIn={isLoggedIn}
-        user={user}
-        onLogout={handleLogout}
-      />
-      
-      <main className="main-content">
-        <HousingSection id="housing" user={user} />
-        <ShopsSection id="shops" />
-        <MaidSection id="maid" />
-        <MapSection id="map" />
-        <ExpenseCalculatorSection id="expense-calculator" />
-        <BachelorHacksSection id="hacks" user={user} />
-        <HealthSection id="health" user={user} />
-        <ContactSection id="contact" />
-        {isLoggedIn && <ProfileSection id="profile" user={user} />}
-        {!isLoggedIn && <GetStartedSection id="get-started" onRegister={handleRegister} />}
-      </main>
+      {currentPage === 'admin' ? (
+        <AdminPanel />
+      ) : (
+        <>
+          <Header
+            activeSection={activeSection}
+            onNavigate={scrollToSection}
+            onLoginClick={() => setIsLoginModalOpen(true)}
+            isLoggedIn={isLoggedIn}
+            user={user}
+            onLogout={handleLogout}
+          />
+          
+          <main className="main-content">
+            <HousingSection id="housing" user={user} />
+            <ShopsSection id="shops" />
+            <MaidSection id="maid" />
+            <MapSection id="map" />
+            <ExpenseCalculatorSection id="expense-calculator" />
+            <BachelorHacksSection id="hacks" user={user} />
+            <HealthSection id="health" user={user} />
+            <ContactSection id="contact" />
+            {isLoggedIn && <ProfileSection id="profile" user={user} />}
+            {!isLoggedIn && <GetStartedSection id="get-started" onRegister={handleRegister} />}
+          </main>
 
-      <Footer />
+          <Footer />
 
-      {isLoginModalOpen && (
-        <LoginModal
-          onClose={() => setIsLoginModalOpen(false)}
-          onLogin={handleLogin}
-        />
+          {isLoginModalOpen && (
+            <LoginModal
+              onClose={() => setIsLoginModalOpen(false)}
+              onLogin={handleLogin}
+            />
+          )}
+        </>
       )}
     </div>
   );
