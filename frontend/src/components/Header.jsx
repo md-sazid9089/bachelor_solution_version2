@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBars, faTimes, faHome, faStore, faUserTie, faMap, faCalculator, faPhone, faUser, faSignOutAlt, faHeartbeat } from '@fortawesome/free-solid-svg-icons';
+import { faBars, faTimes, faHome, faStore, faUserTie, faMapMarkerAlt, faCalculator, faPhone, faUser, faSignOutAlt, faHeartbeat } from '@fortawesome/free-solid-svg-icons';
 
 const Header = ({
   activeSection,
@@ -16,11 +16,10 @@ const Header = ({
     { id: 'housing', label: 'Housing', icon: faHome },
     { id: 'shops', label: 'Shops', icon: faStore },
     { id: 'maid', label: 'Maid', icon: faUserTie },
-    { id: 'map', label: 'Map', icon: faMap },
+    { id: 'map', label: 'Map', icon: faMapMarkerAlt },
     { id: 'expense-calculator', label: 'Calculator', icon: faCalculator },
     { id: 'hacks', label: 'Hacks', icon: faUserTie },
     { id: 'health', label: 'Health', icon: faHeartbeat },
-    { id: 'contact', label: 'Contact', icon: faPhone },
   ];
 
   if (isLoggedIn) {

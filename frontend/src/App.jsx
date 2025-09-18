@@ -12,6 +12,7 @@ import GetStartedSection from './components/sections/GetStartedSection';
 import ProfileSection from './components/sections/ProfileSection';
 import LoginModal from './components/modals/LoginModal';
 import AdminPanel from './components/admin/AdminPanel';
+import FloatingContact from './components/FloatingContact';
 import Footer from './components/Footer';
 import './styles/components.css';
 import './styles/utilities.css';
@@ -106,12 +107,12 @@ function App() {
             <ExpenseCalculatorSection id="expense-calculator" />
             <BachelorHacksSection id="hacks" user={user} />
             <HealthSection id="health" user={user} />
-            <ContactSection id="contact" />
             {isLoggedIn && <ProfileSection id="profile" user={user} />}
             {!isLoggedIn && <GetStartedSection id="get-started" onRegister={handleRegister} />}
           </main>
 
           <Footer />
+          <FloatingContact />
 
           {isLoginModalOpen && (
             <LoginModal
