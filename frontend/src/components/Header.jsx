@@ -29,7 +29,7 @@ const Header = ({
   ];
 
   if (isLoggedIn) {
-    navItems.push({ id: 'profile', label: 'Profile', icon: faUser });
+    navItems.push({ id: 'profile', label: '', icon: faUser });
   }
 
   const handleNavClick = (sectionId) => {

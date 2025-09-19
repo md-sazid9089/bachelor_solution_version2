@@ -158,11 +158,13 @@
 }
 
 .user-menu {
-  display: flex;
+  display: flex !important;
   align-items: center;
   gap: var(--space-3);
   flex-shrink: 0;
   min-width: fit-content;
+  opacity: 1 !important;
+  visibility: visible !important;
 }
 
 .welcome-text {
@@ -173,23 +175,30 @@
 }
 
 .logout-btn {
-  background: rgba(255, 255, 255, 0.8);
-  color: var(--gray-600);
-  padding: var(--space-2) var(--space-3);
+  background: transparent !important;
+  color: black !important;
+  padding: var(--space-2) var(--space-4);
   border-radius: var(--radius-md);
   transition: all var(--transition-fast);
-  display: flex;
+  display: flex !important;
   align-items: center;
   gap: var(--space-2);
   font-size: var(--font-size-sm);
-  border: 1px solid rgba(255, 255, 255, 0.3);
+  border: 2px solid rgba(255, 255, 255, 0.3) !important;
   backdrop-filter: blur(10px);
   white-space: nowrap;
+  font-weight: 600;
+  box-shadow: none !important;
+  opacity: 1 !important;
+  visibility: visible !important;
 }
 
 .logout-btn:hover {
-  background: var(--gray-100);
-  color: var(--gray-800);
+  background: rgba(255, 255, 255, 0.2) !important;
+  color: black !important;
+  border-color: rgba(255, 255, 255, 0.5) !important;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1) !important;
 }
 
 .mobile-menu-toggle {
@@ -2190,10 +2199,19 @@
     justify-content: center;
   }
 
+  /* Keep logout button visible on mobile outside of collapsed menu */
   .user-menu {
-    width: 100%;
-    flex-direction: column;
-    align-items: flex-start;
+    position: fixed !important;
+    top: 20px !important;
+    right: 20px !important;
+    width: auto !important;
+    flex-direction: row !important;
+    z-index: 1001 !important;
+    background: rgba(255, 255, 255, 0.95) !important;
+    padding: 8px !important;
+    border-radius: 8px !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15) !important;
+    align-items: center !important;
   }
 }
 
