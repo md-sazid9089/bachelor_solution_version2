@@ -17,35 +17,51 @@ const ShopsSection = ({ id }) => {
     { id: 'clothing', label: 'Clothing', icon: faTshirt }
   ];
 
-  useEffect(() => {
-    async function fetchShops() {
-      try {
-        const res = await axios.get('http://localhost:5000/api/shops');
-        setShops(res.data);
-        setFilteredShops(res.data);
-      } catch (err) {
-        console.error('Error fetching shops:', err);
-      }
+  const fetchShops = async () => {
+    try {
+      const res = await axios.get('http://localhost:5000/api/shops');
+      setShops(res.data);
+      setFilteredShops(res.data);
+    } catch (err) {
+      console.error('Error fetching shops:', err);
     }
+  };
+
+  useEffect(() => {
     fetchShops();
   }, []);
 
   useEffect(() => {
-    if (selectedCategory === 'all') {
+    const norm = (s) => (s || '').toString().toLowerCase().trim();
+    if (norm(selectedCategory) === 'all') {
       setFilteredShops(shops);
     } else {
-      setFilteredShops(shops.filter(shop => shop.category === selectedCategory));
+      setFilteredShops(shops.filter(shop => norm(shop.category) === norm(selectedCategory)));
     }
   }, [selectedCategory, shops]);
 
   const renderStars = (rating) => {
+    const safe = Math.floor(Number(rating) || 0);
     return Array.from({ length: 5 }, (_, index) => (
       <FontAwesomeIcon
         key={index}
         icon={faStar}
-        className={index < Math.floor(rating) ? 'star-filled' : 'star-empty'}
+        className={index < safe ? 'star-filled' : 'star-empty'}
       />
     ));
+  };
+
+  const proxied = (url) => {
+    if (!url) return '';
+    try {
+      const u = new URL(url);
+      if (u.protocol === 'http:' || u.protocol === 'https:') {
+        return `http://localhost:5000/api/proxy/image?url=${encodeURIComponent(url)}`;
+      }
+      return url;
+    } catch {
+      return url;
+    }
   };
 
   return (
@@ -77,18 +93,29 @@ const ShopsSection = ({ id }) => {
               <span>{category.label}</span>
             </button>
           ))}
+          <button className="category-btn" onClick={fetchShops} title="Refresh shops">
+            ↻
+            <span>Refresh</span>
+          </button>
         </motion.div>
 
         <div className="shops-grid">
           {filteredShops.map((shop, index) => (
             <motion.div
-              key={shop.id}
+              key={shop._id || shop.id || index}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: index * 0.1 }}
               className="shop-card"
             >
-              <div className="shop-category">{shop.category}</div>
+              <div className="shop-image">
+                <img
+                  src={proxied(shop.imageUrl || shop.imageURL || 'https://tse1.mm.bing.net/th/id/OIP.xJuUVYr6qz1rtyobV19q7QHaEr?rs=1&pid=ImgDetMain&o=7&rm=3')}
+                  alt={shop.name}
+                  onError={(e) => { e.currentTarget.src = proxied('https://tse1.mm.bing.net/th/id/OIP.xJuUVYr6qz1rtyobV19q7QHaEr?rs=1&pid=ImgDetMain&o=7&rm=3'); }}
+                />
+                <div className="shop-category">{shop.category}</div>
+              </div>
               <div className="shop-info">
                 <h3>{shop.name}</h3>
                 <div className="shop-rating">
