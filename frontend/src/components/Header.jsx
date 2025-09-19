@@ -12,11 +12,8 @@ const Header = ({
 }) => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
-  // Get background color based on active section - using housing page color for all
-  const getSectionBackground = (section) => {
-    // Use housing page gradient for all sections - matching CSS variables
-    return 'linear-gradient(135deg, var(--primary-50) 0%, var(--secondary-50) 100%)';
-  };
+  // Single brand background for all sections
+  const getSectionBackground = () => 'linear-gradient(135deg, var(--primary-50) 0%, var(--primary-100) 100%)';
 
   const navItems = [
     { id: 'housing', label: 'Housing', icon: faHome },

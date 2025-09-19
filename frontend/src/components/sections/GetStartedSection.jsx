@@ -26,14 +26,14 @@ const GetStartedSection = ({ id, onRegister }) => {
 
     if (!formData.email.trim()) {
       newErrors.email = 'Email is required';
-    } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
-      newErrors.email = 'Email is invalid';
+    } else if (!/^[A-Za-z0-9._%+-]+@gmail\.com$/i.test(formData.email)) {
+      newErrors.email = 'Email must be a Gmail address (e.g., name@gmail.com)';
     }
 
     if (!formData.phone.trim()) {
       newErrors.phone = 'Phone number is required';
-    } else if (!/^[0-9]{10}$/.test(formData.phone.replace(/\s/g, ''))) {
-      newErrors.phone = 'Phone number must be 10 digits';
+    } else if (!/^[0-9]{11}$/.test(formData.phone.replace(/\s/g, ''))) {
+      newErrors.phone = 'Phone number must be 11 digits';
     }
 
     if (!formData.password) {
@@ -142,8 +142,7 @@ const GetStartedSection = ({ id, onRegister }) => {
         >
           <form className="registration-form" onSubmit={handleSubmit}>
             <div className="form-group">
-              <div className="input-group">
-                <FontAwesomeIcon icon={faUser} />
+              <div className="input-group no-leading-icon">
                 <input
                   type="text"
                   name="name"
@@ -157,8 +156,7 @@ const GetStartedSection = ({ id, onRegister }) => {
             </div>
 
             <div className="form-group">
-              <div className="input-group">
-                <FontAwesomeIcon icon={faEnvelope} />
+              <div className="input-group no-leading-icon">
                 <input
                   type="email"
                   name="email"
@@ -172,8 +170,7 @@ const GetStartedSection = ({ id, onRegister }) => {
             </div>
 
             <div className="form-group">
-              <div className="input-group">
-                <FontAwesomeIcon icon={faPhone} />
+              <div className="input-group no-leading-icon">
                 <input
                   type="tel"
                   name="phone"
@@ -187,8 +184,7 @@ const GetStartedSection = ({ id, onRegister }) => {
             </div>
 
             <div className="form-group">
-              <div className="input-group">
-                <FontAwesomeIcon icon={faLock} />
+              <div className="input-group no-leading-icon">
                 <input
                   type="password"
                   name="password"
@@ -202,8 +198,7 @@ const GetStartedSection = ({ id, onRegister }) => {
             </div>
 
             <div className="form-group">
-              <div className="input-group">
-                <FontAwesomeIcon icon={faLock} />
+              <div className="input-group no-leading-icon">
                 <input
                   type="password"
                   name="confirmPassword"

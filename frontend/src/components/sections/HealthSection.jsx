@@ -22,6 +22,7 @@ const HealthSection = ({ id, user }) => {
   const [loading, setLoading] = useState(false);
   const [successMessage, setSuccessMessage] = useState('');
   const [bookingId, setBookingId] = useState('');
+  const [formErrors, setFormErrors] = useState({});
   
   // Appointment form state
   const [appointmentForm, setAppointmentForm] = useState({
@@ -102,6 +103,16 @@ const HealthSection = ({ id, user }) => {
 
   const handleAppointmentSubmit = async (e) => {
     e.preventDefault();
+    // Basic client-side validation for phone and email
+    const errs = {};
+    if (!/^[A-Za-z0-9._%+-]+@gmail\.com$/i.test(appointmentForm.patientEmail || '')) {
+      errs.patientEmail = 'Please enter a valid Gmail address (e.g., name@gmail.com)';
+    }
+    if (!/^[0-9]{11}$/.test((appointmentForm.patientPhone || '').replace(/\s/g, ''))) {
+      errs.patientPhone = 'Phone number must be 11 digits';
+    }
+    setFormErrors(errs);
+    if (Object.keys(errs).length > 0) return;
     setLoading(true);
     setSuccessMessage('');
     setBookingId('');
@@ -243,6 +254,9 @@ const HealthSection = ({ id, user }) => {
                         onChange={(e) => setAppointmentForm({...appointmentForm, patientEmail: e.target.value})}
                         required
                       />
+                      {formErrors.patientEmail && (
+                        <small style={{ color: '#ef4444' }}>{formErrors.patientEmail}</small>
+                      )}
                     </div>
                   </div>
                   
@@ -281,6 +295,9 @@ const HealthSection = ({ id, user }) => {
                         onChange={(e) => setAppointmentForm({...appointmentForm, patientPhone: e.target.value})}
                         required
                       />
+                      {formErrors.patientPhone && (
+                        <small style={{ color: '#ef4444' }}>{formErrors.patientPhone}</small>
+                      )}
                     </div>
                     <div className="form-group">
                       <label>Specialty</label>

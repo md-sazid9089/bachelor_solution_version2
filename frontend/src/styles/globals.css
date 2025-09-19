@@ -102,6 +102,8 @@
 html {
   font-size: 16px;
   scroll-behavior: smooth;
+  /* Ensure in-page scroll positions account for fixed header */
+  scroll-padding-top: 48px;
 }
 
 body {

@@ -111,7 +111,6 @@ const HousingSection = ({ id, user }) => {
               onChange={(e) => handleFilterChange('propertyType', e.target.value)}
             >
               <option value="all">All Types</option>
-              <option value="Studio">Studio</option>
               <option value="1BHK">1BHK</option>
               <option value="2BHK">2BHK</option>
               <option value="3BHK">3BHK</option>

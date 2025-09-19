@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTimes, faEnvelope, faLock, faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
+import { faTimes, faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 
 const LoginModal = ({ onClose, onLogin }) => {
   const [formData, setFormData] = useState({
@@ -114,8 +114,7 @@ const LoginModal = ({ onClose, onLogin }) => {
 
           <form className="login-form" onSubmit={handleSubmit}>
             <div className="form-group">
-              <div className="input-group">
-                <FontAwesomeIcon icon={faEnvelope} />
+              <div className="input-group no-leading-icon">
                 <input
                   type="email"
                   name="email"
@@ -129,8 +128,7 @@ const LoginModal = ({ onClose, onLogin }) => {
             </div>
 
             <div className="form-group">
-              <div className="input-group">
-                <FontAwesomeIcon icon={faLock} />
+              <div className="input-group no-leading-icon">
                 <input
                   type={showPassword ? 'text' : 'password'}
                   name="password"

@@ -80,7 +80,8 @@ function App() {
     setActiveSection(sectionId);
     const element = document.getElementById(sectionId);
     if (element) {
-      const offsetTop = element.offsetTop - 120; // Account for navbar height + buffer
+      // Land a bit higher under the fixed header; header is 100px tall
+      const offsetTop = element.offsetTop - 104; // header (100) + small buffer (4)
       window.scrollTo({
         top: offsetTop,
         behavior: 'smooth'
