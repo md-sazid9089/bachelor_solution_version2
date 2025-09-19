@@ -118,7 +118,9 @@
 .nav-actions {
   display: flex;
   align-items: center;
-  gap: var(--space-4);
+  gap: var(--space-3);
+  flex-shrink: 0;
+  min-width: fit-content;
 }
 
 .login-btn {
@@ -158,23 +160,31 @@
 .user-menu {
   display: flex;
   align-items: center;
-  gap: var(--space-4);
+  gap: var(--space-3);
+  flex-shrink: 0;
+  min-width: fit-content;
 }
 
 .welcome-text {
   color: var(--gray-700);
   font-weight: 500;
+  white-space: nowrap;
+  font-size: var(--font-size-sm);
 }
 
 .logout-btn {
-  background: transparent;
+  background: rgba(255, 255, 255, 0.8);
   color: var(--gray-600);
-  padding: var(--space-2) var(--space-4);
+  padding: var(--space-2) var(--space-3);
   border-radius: var(--radius-md);
   transition: all var(--transition-fast);
   display: flex;
   align-items: center;
   gap: var(--space-2);
+  font-size: var(--font-size-sm);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(10px);
+  white-space: nowrap;
 }
 
 .logout-btn:hover {
@@ -2103,6 +2113,14 @@
   
   .nav-link span {
     display: none;
+  }
+  
+  .welcome-text {
+    font-size: var(--font-size-xs);
+  }
+  
+  .user-menu {
+    gap: var(--space-2);
   }
 }
 

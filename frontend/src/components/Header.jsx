@@ -67,7 +67,6 @@ const Header = ({
           <div className="nav-actions">
             {isLoggedIn ? (
               <div className="user-menu">
-                <span className="welcome-text">Hi, {user?.name || 'User'}</span>
                 <button className="logout-btn" onClick={onLogout}>
                   <FontAwesomeIcon icon={faSignOutAlt} />
                   <span>Logout</span>
