@@ -222,7 +222,7 @@ const AdminDashboard = ({ adminUser, adminToken, onLogout }) => {
       case 'properties':
         return { title: '', location: '', rent: '', type: '', beds: '', baths: '', contact: '', description: '' };
       case 'shops':
-        return { name: '', category: '', address: '', contact: '', distance: '', rating: '', hours: '', imageUrl: 'https://tse1.mm.bing.net/th/id/OIP.xJuUVYr6qz1rtyobV19q7QHaEr?rs=1&pid=ImgDetMain&o=7&rm=3' };
+        return { name: '', category: '', address: '', contact: '', distance: '', rating: '', hours: '' };
       case 'maids':
         return { name: '', services: [], hourlyRate: '', rating: '', contact: '', experience: '', availability: '', description: '' };
       case 'hacks':
@@ -515,15 +515,6 @@ const AdminDashboard = ({ adminUser, adminToken, onLogout }) => {
                   value={formData.hours || ''}
                   onChange={(e) => handleInputChange('hours', e.target.value)}
                   placeholder="e.g., 9 AM - 10 PM"
-                />
-              </div>
-              <div className="form-group">
-                <label>Image URL</label>
-                <input
-                  type="url"
-                  value={formData.imageUrl || ''}
-                  onChange={(e) => handleInputChange('imageUrl', e.target.value)}
-                  placeholder="https://example.com/image.jpg"
                 />
               </div>
             </>

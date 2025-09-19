@@ -51,18 +51,7 @@ const ShopsSection = ({ id }) => {
     ));
   };
 
-  const proxied = (url) => {
-    if (!url) return '';
-    try {
-      const u = new URL(url);
-      if (u.protocol === 'http:' || u.protocol === 'https:') {
-        return `http://localhost:5000/api/proxy/image?url=${encodeURIComponent(url)}`;
-      }
-      return url;
-    } catch {
-      return url;
-    }
-  };
+  // No images in shop cards per request
 
   return (
     <section id={id} className="section shops-section">
@@ -108,14 +97,7 @@ const ShopsSection = ({ id }) => {
               transition={{ duration: 0.6, delay: index * 0.1 }}
               className="shop-card"
             >
-              <div className="shop-image">
-                <img
-                  src={proxied(shop.imageUrl || shop.imageURL || 'https://tse1.mm.bing.net/th/id/OIP.xJuUVYr6qz1rtyobV19q7QHaEr?rs=1&pid=ImgDetMain&o=7&rm=3')}
-                  alt={shop.name}
-                  onError={(e) => { e.currentTarget.src = proxied('https://tse1.mm.bing.net/th/id/OIP.xJuUVYr6qz1rtyobV19q7QHaEr?rs=1&pid=ImgDetMain&o=7&rm=3'); }}
-                />
-                <div className="shop-category">{shop.category}</div>
-              </div>
+              <div className="shop-category" style={{ marginBottom: '8px' }}>{shop.category}</div>
               <div className="shop-info">
                 <h3>{shop.name}</h3>
                 <div className="shop-rating">

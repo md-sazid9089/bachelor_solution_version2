@@ -46,7 +46,12 @@ async function seedHacks() {
       const res = await axios.post('http://localhost:5000/api/hacks', hack);
       console.log('Added hack:', res.data.title);
     } catch (err) {
-      console.error('Error adding hack:', hack.title, err.response?.data || err.message);
+      console.error('Error adding hack:', hack.title, {
+        status: err.response?.status,
+        data: err.response?.data,
+        message: err.message,
+        code: err.code
+      });
     }
   }
 }

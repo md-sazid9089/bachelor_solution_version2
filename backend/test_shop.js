@@ -63,7 +63,12 @@ async function seedShops() {
       const res = await axios.post('http://localhost:5000/api/shops', shop);
       console.log('Added:', res.data.name);
     } catch (err) {
-      console.error('Error adding shop:', shop.name, err.response?.data || err.message);
+      console.error('Error adding shop:', shop.name, {
+        status: err.response?.status,
+        data: err.response?.data,
+        message: err.message,
+        code: err.code
+      });
     }
   }
 }

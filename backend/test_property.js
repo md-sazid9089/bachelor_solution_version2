@@ -39,7 +39,12 @@ async function seedProperties() {
       const res = await axios.post('http://localhost:5000/api/properties', property);
       console.log('Added:', res.data.title);
     } catch (err) {
-      console.error('Error adding property:', property.title, err.response?.data || err.message);
+      console.error('Error adding property:', property.title, {
+        status: err.response?.status,
+        data: err.response?.data,
+        message: err.message,
+        code: err.code
+      });
     }
   }
 }

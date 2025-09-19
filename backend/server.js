@@ -2,6 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const dotenv = require('dotenv');
 const cors = require('cors');
+const path = require('path');
 
 dotenv.config();
 
@@ -27,6 +28,11 @@ app.use('/api/admin', adminRoutes);
 app.use('/api/proxy', proxyRoutes);
 
 console.log('[Init] Routes mounted: /api/auth, /api/maids, /api/properties, /api/shops, /api/hacks, /api/health, /api/admin, /api/proxy');
+
+// Serve built frontend assets (images) so the frontend can reference http://localhost:5000/assets/*.jpg
+const assetsDir = path.join(__dirname, '../frontend/dist/assets');
+app.use('/assets', express.static(assetsDir));
+console.log('[Init] Static assets served from', assetsDir, 'at /assets');
 
 const PORT = process.env.PORT || 5000;
 
