@@ -21,6 +21,8 @@ const HealthSection = ({ id, user }) => {
   const [doctors, setDoctors] = useState([]);
   const [loading, setLoading] = useState(false);
   const [successMessage, setSuccessMessage] = useState('');
+  const [statusCheckId, setStatusCheckId] = useState('');
+  const [statusResult, setStatusResult] = useState(null);
   const [bookingId, setBookingId] = useState('');
   const [formErrors, setFormErrors] = useState({});
   
@@ -158,6 +160,19 @@ const HealthSection = ({ id, user }) => {
 
   const openGoogleMeet = () => {
     window.open('https://meet.google.com/new', '_blank');
+  };
+
+  const handleStatusCheck = async (e) => {
+    e.preventDefault();
+    setStatusResult(null);
+    if (!statusCheckId.trim()) return;
+    try {
+      const res = await axios.get(`http://localhost:5000/api/health/appointments/${encodeURIComponent(statusCheckId.trim())}/status`);
+      setStatusResult(res.data);
+    } catch (error) {
+      const message = error?.response?.data?.message || 'Unable to fetch status. Please check the Booking ID.';
+      setStatusResult({ error: message });
+    }
   };
 
   return (
@@ -405,6 +420,44 @@ const HealthSection = ({ id, user }) => {
                     </div>
                   ))}
                 </div>
+              </div>
+
+              <div className="status-section" style={{ marginTop: '24px' }}>
+                <h3>Check Appointment Status</h3>
+                <form onSubmit={handleStatusCheck} className="status-form" style={{ display: 'flex', gap: '12px', alignItems: 'center', flexWrap: 'wrap' }}>
+                  <input
+                    type="text"
+                    placeholder="Enter Booking ID (e.g., APT123ABC)"
+                    value={statusCheckId}
+                    onChange={(e) => setStatusCheckId(e.target.value)}
+                    style={{ flex: '1 1 260px' }}
+                  />
+                  <button type="submit" className="submit-btn">Check Status</button>
+                </form>
+
+                {statusResult && (
+                  <div className="status-result" style={{ marginTop: '12px', padding: '12px', borderRadius: '8px', background: '#f9fafb' }}>
+                    {statusResult.error ? (
+                      <p style={{ color: '#ef4444' }}>{statusResult.error}</p>
+                    ) : (
+                      <div>
+                        <p><strong>Status:</strong> {statusResult.status}</p>
+                        {statusResult.message && <p>{statusResult.message}</p>}
+                        {statusResult.googleMeetLink && (
+                          <p>
+                            <strong>Google Meet:</strong> <a href={statusResult.googleMeetLink} target="_blank" rel="noreferrer">Join link</a>
+                          </p>
+                        )}
+                        {statusResult.appointmentDate && (
+                          <p><strong>Date:</strong> {new Date(statusResult.appointmentDate).toLocaleDateString()} at {statusResult.appointmentTime}</p>
+                        )}
+                        {statusResult.doctorName && (
+                          <p><strong>Doctor:</strong> {statusResult.doctorName}</p>
+                        )}
+                      </div>
+                    )}
+                  </div>
+                )}
               </div>
             </div>
           </motion.div>

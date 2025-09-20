@@ -4,6 +4,7 @@ const {
   getAppointments,
   createAppointment,
   updateAppointmentStatus,
+  getAppointmentStatusByBookingId,
   getDoctors,
   addDoctor,
   getDoctorById
@@ -13,6 +14,7 @@ const {
 router.get('/appointments', getAppointments);
 router.post('/appointments', createAppointment);
 router.patch('/appointments/:id/status', updateAppointmentStatus);
+router.get('/appointments/:bookingId/status', getAppointmentStatusByBookingId);
 
 // Doctor routes
 router.get('/doctors', getDoctors);

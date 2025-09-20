@@ -12,7 +12,7 @@ async function createAdminUser() {
     console.log('Creating admin user...');
     const response = await axios.post('http://localhost:5000/api/auth/register', adminData);
     
-    console.log('✅ Admin user created successfully!');
+    console.log(' Admin user created successfully!');
     console.log('Admin Login Credentials:');
     console.log('Email:', adminData.email);
     console.log('Password:', adminData.password);
@@ -20,7 +20,7 @@ async function createAdminUser() {
     
   } catch (error) {
     if (error.response && error.response.status === 400 && error.response.data.message.includes('already exists')) {
-      console.log('ℹ️  Admin user already exists!');
+      console.log(' Admin user already exists!');
       console.log('Admin Login Credentials:');
       console.log('Email: sazid.cse.20230104062@aust.edu');
       console.log('Password: admin123');

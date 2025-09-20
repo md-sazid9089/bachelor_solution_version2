@@ -81,6 +81,51 @@ exports.updateAppointmentStatus = async (req, res) => {
   }
 };
 
+// Get appointment status by bookingId (unique ID visible to user)
+exports.getAppointmentStatusByBookingId = async (req, res) => {
+  try {
+    const { bookingId } = req.params;
+    if (!bookingId) {
+      return res.status(400).json({ message: 'bookingId is required' });
+    }
+
+    const appointment = await Appointment.findOne({ bookingId });
+    if (!appointment) {
+      return res.status(404).json({ message: 'Appointment not found for this booking ID' });
+    }
+
+    // Map internal status to requested labels/messages
+    let statusLabel = appointment.status;
+    let message = '';
+    if (appointment.status === 'pending') {
+      statusLabel = 'pending';
+      message = "Pending. You'll receive an email with the Google Meet ID.";
+    } else if (appointment.status === 'confirmed') {
+      // Treat confirmed as 'email sent' for user-facing language
+      statusLabel = 'email_sent';
+      message = 'Email sent with Google Meet ID.';
+    } else if (appointment.status === 'cancelled') {
+      statusLabel = 'cancelled';
+      message = 'Appointment cancelled.';
+    } else if (appointment.status === 'completed') {
+      statusLabel = 'completed';
+      message = 'Appointment completed.';
+    }
+
+    return res.json({
+      bookingId: appointment.bookingId,
+      status: statusLabel,
+      message,
+      googleMeetLink: appointment.googleMeetLink || undefined,
+      doctorName: appointment.doctorName,
+      appointmentDate: appointment.appointmentDate,
+      appointmentTime: appointment.appointmentTime
+    });
+  } catch (error) {
+    return res.status(500).json({ message: 'Error retrieving appointment status', error: error.message });
+  }
+};
+
 // Doctor Controllers
 exports.getDoctors = async (req, res) => {
   try {
