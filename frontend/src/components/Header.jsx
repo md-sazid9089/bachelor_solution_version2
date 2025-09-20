@@ -30,6 +30,12 @@ const Header = ({
   }
 
   const handleNavClick = (sectionId) => {
+    // If user clicks Health and is not logged in, open login instead of navigating
+    if (sectionId === 'health' && !isLoggedIn) {
+      onLoginClick && onLoginClick();
+      setIsMobileMenuOpen(false);
+      return;
+    }
     onNavigate(sectionId);
     setIsMobileMenuOpen(false);
   };

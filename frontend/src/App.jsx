@@ -106,8 +106,8 @@ function App() {
           
           <main className="main-content">
             <HousingSection id="housing" user={user} />
-            <ShopsSection id="shops" />
-            <MaidSection id="maid" />
+            <ShopsSection id="shops" user={user} />
+            <MaidSection id="maid" user={user} />
             <MapSection id="map" />
             <ExpenseCalculatorSection id="expense-calculator" />
             <BachelorHacksSection id="hacks" user={user} />

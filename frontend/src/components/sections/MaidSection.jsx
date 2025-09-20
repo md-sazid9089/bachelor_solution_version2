@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUserTie, faPhone, faStar, faRupeeSign, faClock, faFilter } from '@fortawesome/free-solid-svg-icons';
 
-const MaidSection = ({ id }) => {
+const MaidSection = ({ id, user }) => {
   const [maids, setMaids] = useState([]);
   const [filteredMaids, setFilteredMaids] = useState([]);
   const [selectedService, setSelectedService] = useState('all');
@@ -101,17 +101,30 @@ const MaidSection = ({ id }) => {
                     <FontAwesomeIcon icon={faClock} />
                     <span>Experience: {maid.experience}</span>
                   </div>
-                  <div className="detail-row">
-                    <FontAwesomeIcon icon={faPhone} />
-                    <span>{maid.contact}</span>
-                  </div>
+                  {user ? (
+                    <div className="detail-row">
+                      <FontAwesomeIcon icon={faPhone} />
+                      <span>{maid.contact}</span>
+                    </div>
+                  ) : (
+                    <div className="detail-row">
+                      <FontAwesomeIcon icon={faPhone} />
+                      <span style={{opacity: 0.7}}>Login to view contact</span>
+                    </div>
+                  )}
                 </div>
                 <div className="availability">
                   <strong>Available:</strong> {maid.availability}
                 </div>
-                <div className="book-maid-btn" style={{textAlign: 'center', fontWeight: 'bold'}}>
-                  Contact: {maid.contact}
-                </div>
+                {user ? (
+                  <div className="book-maid-btn" style={{textAlign: 'center', fontWeight: 'bold'}}>
+                    Contact: {maid.contact}
+                  </div>
+                ) : (
+                  <div className="book-maid-btn" style={{textAlign: 'center', fontWeight: 'bold', opacity: 0.7}}>
+                    Login to view contact
+                  </div>
+                )}
               </div>
             </motion.div>
           ))}

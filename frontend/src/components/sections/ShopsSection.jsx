@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStore, faMapMarkerAlt, faPhone, faStar, faShoppingCart, faPrescriptionBottle, faUtensils, faTshirt } from '@fortawesome/free-solid-svg-icons';
 
-const ShopsSection = ({ id }) => {
+const ShopsSection = ({ id, user }) => {
   const [shops, setShops] = useState([]);
   const [filteredShops, setFilteredShops] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState('all');
@@ -109,14 +109,25 @@ const ShopsSection = ({ id }) => {
                     <FontAwesomeIcon icon={faMapMarkerAlt} />
                     <span>{shop.distance} away</span>
                   </div>
-                  <div className="detail-row">
-                    <FontAwesomeIcon icon={faPhone} />
-                    <span>{shop.contact}</span>
-                  </div>
+                  {user ? (
+                    <div className="detail-row">
+                      <FontAwesomeIcon icon={faPhone} />
+                      <span>{shop.contact}</span>
+                    </div>
+                  ) : (
+                    <div className="detail-row">
+                      <FontAwesomeIcon icon={faPhone} />
+                      <span style={{opacity: 0.7}}>Login to view contact</span>
+                    </div>
+                  )}
                 </div>
                 <p className="shop-address">{shop.address}</p>
                 <p className="shop-hours">Hours: {shop.hours}</p>
-                <button className="contact-shop-btn">Contact Shop</button>
+                {user ? (
+                  <button className="contact-shop-btn">Contact Shop</button>
+                ) : (
+                  <button className="contact-shop-btn" disabled title="Login to view contact">Login to view contact</button>
+                )}
               </div>
             </motion.div>
           ))}
