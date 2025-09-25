@@ -192,6 +192,7 @@ const GetStartedSection = ({ id, onRegister }) => {
                   value={formData.password}
                   onChange={handleInputChange}
                   className={errors.password ? 'error' : ''}
+                  autoComplete="new-password"
                 />
               </div>
               {errors.password && <span className="error-message">{errors.password}</span>}
@@ -206,6 +207,7 @@ const GetStartedSection = ({ id, onRegister }) => {
                   value={formData.confirmPassword}
                   onChange={handleInputChange}
                   className={errors.confirmPassword ? 'error' : ''}
+                  autoComplete="new-password"
                 />
               </div>
               {errors.confirmPassword && <span className="error-message">{errors.confirmPassword}</span>}

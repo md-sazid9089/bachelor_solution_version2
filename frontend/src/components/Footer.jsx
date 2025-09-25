@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { 
   faFacebook, 
@@ -13,9 +13,11 @@ import {
   faMapMarkerAlt,
   faHeart
 } from '@fortawesome/free-solid-svg-icons';
+import CarbonFootprintDisplay from './CarbonFootprintDisplay';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
+  const [showCarbon, setShowCarbon] = useState(false);
 
   const socialLinks = [
     { icon: faFacebook, url: '#', label: 'Facebook' },
@@ -164,6 +166,33 @@ const Footer = () => {
             </div>
           </div>
         </div>
+      </div>
+
+      <div style={{ position: 'fixed', bottom: 20, left: 20, zIndex: 1100 }}>
+        <button
+          onClick={() => setShowCarbon((v) => !v)}
+          style={{
+            background: '#222',
+            color: '#fff',
+            border: 'none',
+            borderRadius: '50%',
+            width: 48,
+            height: 48,
+            fontSize: 24,
+            boxShadow: '0 2px 8px rgba(0,0,0,0.15)',
+            cursor: 'pointer',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            padding: 0,
+          }}
+          title="Show Network Carbon Footprint"
+        >
+          <span style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: '100%', height: '100%' }}>
+            🌱
+          </span>
+        </button>
+        {showCarbon && <CarbonFootprintDisplay onClose={() => setShowCarbon(false)} position="left" />}
       </div>
     </footer>
   );

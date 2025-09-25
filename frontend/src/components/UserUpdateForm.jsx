@@ -33,7 +33,7 @@ const UserUpdateForm = ({ userId, currentUser }) => {
       <input name="name" value={formData.name} onChange={handleChange} placeholder="Name" />
       <input name="email" value={formData.email} onChange={handleChange} placeholder="Email" />
       <input name="phone" value={formData.phone} onChange={handleChange} placeholder="Phone" />
-      <input name="password" value={formData.password} onChange={handleChange} placeholder="New Password" type="password" />
+  <input name="password" value={formData.password} onChange={handleChange} placeholder="New Password" type="password" autoComplete="new-password" />
       <button type="submit">Update</button>
       {message && <div>{message}</div>}
     </form>

@@ -123,7 +123,7 @@ const HousingSection = ({ id, user }) => {
         <div className="properties-grid">
           {filteredProperties.map((property, index) => (
             <motion.div
-              key={property.id}
+              key={property._id || property.id || index}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: index * 0.1 }}

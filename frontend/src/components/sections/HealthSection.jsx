@@ -403,7 +403,7 @@ const HealthSection = ({ id, user }) => {
                 <h3>Available Doctors</h3>
                 <div className="doctors-grid">
                   {doctors.map(doctor => (
-                    <div key={doctor.id} className="doctor-card">
+                    <div key={doctor._id || doctor.id || doctor.uniqueId} className="doctor-card">
                       <div className="doctor-info">
                         <h4>
                           <FontAwesomeIcon icon={faUserMd} />

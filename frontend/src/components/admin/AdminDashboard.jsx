@@ -353,6 +353,7 @@ const AdminDashboard = ({ adminUser, adminToken, onLogout }) => {
                     value={formData.password || ''}
                     onChange={(e) => handleInputChange('password', e.target.value)}
                     required
+                    autoComplete="new-password"
                   />
                 </div>
               )}
